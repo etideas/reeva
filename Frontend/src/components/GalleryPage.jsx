@@ -76,34 +76,43 @@ const Gallery = () => {
   ];
 
   return (
-    <div className="flex justify-center items-center bg-[#F6F1F1] min-h-screen py-10 pt-44">
-      {/* Gallery Grid Section */}
-      <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mx-4">
-        {imageInfo.map((card, index) => (
-          <div
-            key={index}
-            className="relative group rounded-lg overflow-hidden shadow-lg transition-transform duration-300 transform hover:scale-105 bg-[#AFD3E2]"
-          >
-            {/* Image Section */}
-            <img
-              src={card.image}
-              alt={card.title}
-              className="w-full h-[250px] object-cover rounded-t-lg"
-            />
-            {/* Overlay Section */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#146C94] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="absolute bottom-0 left-0 w-full p-6 bg-[#F6F1F1] bg-opacity-90 backdrop-blur-sm shadow-md transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 rounded-b-lg">
-              <h3 className="text-lg font-bold text-[#146C94]">{card.title}</h3>
-              <p className="text-sm text-[#3C5B43] mt-2">{card.description}</p>
-              <a
-                href="#"
-                className="inline-block mt-4 text-sm font-medium text-[#19A7CE] hover:text-[#146C94]"
-              >
-                Read More
-              </a>
+    <div className="bg-[#F6F1F1] min-h-screen py-10 pt-32">
+      {/* Gallery Heading */}
+      <div className="text-center mb-10">
+        <h1 className="text-5xl font-bold text-[#752220]">Gallery</h1>
+      </div>
+
+      {/* Center Gallery Grid */}
+      <div className="flex justify-center">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mx-4">
+          {imageInfo.map((card, index) => (
+            <div
+              key={index}
+              className="relative group rounded-lg overflow-hidden shadow-lg transition-transform duration-300 transform hover:scale-105 bg-[#752220]"
+            >
+              {/* Image Section */}
+              <img
+                src={card.image}
+                alt={card.title}
+                className="w-full h-[250px] object-cover rounded-t-lg"
+              />
+              {/* Overlay Section */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#752220] via-transparent to-transparent opacity-0 group-hover:opacity-80 transition-opacity duration-500"></div>
+              <div className="absolute bottom-0 left-0 w-full p-2 bg-[#F6F1F1] bg-opacity-80 backdrop-blur-sm shadow-md transform translate-y-full group-hover:translate-y-0 transition-transform duration-550 rounded-b-lg">
+                <h3 className="text-lg font-bold text-[#752220]">
+                  {card.title}
+                </h3>
+                <p className="text-sm text-[#000] mt-2">{card.description}</p>
+                <a
+                  href="#"
+                  className="inline-block mt-4 text-sm font-medium text-[#752220] hover:text-[#AFD3E2] transition duration-200"
+                >
+                  Read More
+                </a>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

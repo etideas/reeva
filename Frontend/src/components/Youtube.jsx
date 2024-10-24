@@ -15,17 +15,17 @@ const YouTube = () => {
   ];
 
   return (
-    <div className="min-h-screen px-8 py-16 pt-44 bg-[#F6F1F1] text-[#146C94]">
+    <div className="min-h-screen px-8 py-16 pt-44 bg-[#F6F1F1] text-[#752220]">
       {/* Latest Videos Section */}
       <section className="mb-16">
-        <h2 className="text-4xl font-bold text-center text-[#146C94] border-b-4 border-[#19A7CE] inline-block pb-2 mb-12">
+        <h2 className="text-4xl font-bold text-center text-[#752220] border-b-4 border-[#752220] inline-block pb-2 mb-12">
           Latest Videos
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12">
           {latestVideos.map((url, index) => (
             <div
               key={index}
-              className="w-full bg-[#AFD3E2] rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
+              className="w-full bg-[#F6F1F1] rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
             >
               <iframe
                 width="100%"
@@ -38,10 +38,10 @@ const YouTube = () => {
                 className="rounded-t-lg"
               ></iframe>
               <div className="p-4 bg-[#F6F1F1]">
-                <h3 className="text-lg font-bold text-[#146C94]">
+                <h3 className="text-lg font-bold text-[#752220]">
                   Video {index + 1}
                 </h3>
-                <p className="text-sm text-[#3C5B43] mt-2">
+                <p className="text-sm text-[#752220] mt-2">
                   Latest video description goes here. Engage viewers with a
                   brief intro about the video content.
                 </p>
@@ -53,14 +53,14 @@ const YouTube = () => {
 
       {/* Other Videos Section */}
       <section>
-        <h2 className="text-4xl font-bold text-center text-[#146C94] border-b-4 border-[#19A7CE] inline-block pb-2 mb-12">
+        <h2 className="text-4xl font-bold text-center text-[#752220] border-b-4 border-[#752220] inline-block pb-2 mb-12">
           Other Videos
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
           {otherVideos.map((url, index) => (
             <div
               key={index}
-              className="w-full bg-[#AFD3E2] rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
+              className="w-full bg-[#F6F1F1] rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
             >
               <iframe
                 width="100%"
@@ -73,10 +73,10 @@ const YouTube = () => {
                 className="rounded-t-lg"
               ></iframe>
               <div className="p-4 bg-[#F6F1F1]">
-                <h3 className="text-lg font-bold text-[#146C94]">
+                <h3 className="text-lg font-bold text-[#752220]">
                   Video {index + 1}
                 </h3>
-                <p className="text-sm text-[#3C5B43] mt-2">
+                <p className="text-sm text-[#752220] mt-2">
                   Brief description or additional information for the video.
                 </p>
               </div>

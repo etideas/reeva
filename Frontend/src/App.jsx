@@ -2,7 +2,7 @@ import { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
-import Motion from "./components/Motion";
+import Motion from "./components/Motion2";
 import GalleryPage from "./components/GalleryPage";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";

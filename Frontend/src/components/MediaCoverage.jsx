@@ -28,7 +28,7 @@ const MediaCoverage = () => {
     <div className="min-h-screen bg-[#F6F1F1] pt-44 p-8">
       <div className="max-w-4xl mx-auto">
         <motion.h1
-          className="text-4xl font-bold text-center text-[#146C94] mb-8"
+          className="text-4xl font-bold text-center text-[#752220] mb-8"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
@@ -39,7 +39,7 @@ const MediaCoverage = () => {
           {newsArticles.map((article, index) => (
             <motion.div
               key={index}
-              className="bg-[#AFD3E2] p-6 rounded-lg shadow-lg flex flex-col md:flex-row items-center"
+              className="bg-[#F6F1F1] p-6 rounded-lg shadow-lg flex flex-col md:flex-row items-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
@@ -55,13 +55,13 @@ const MediaCoverage = () => {
                 />
               </div>
               <div className="md:w-2/3 md:pl-6 mt-4 md:mt-0">
-                <h2 className="text-2xl font-semibold text-[#146C94]">
+                <h2 className="text-2xl font-semibold text-[#752220]">
                   {article.title}
                 </h2>
-                <p className="text-sm text-[#3C5B43]">
+                <p className="text-sm text-[#752220]">
                   {new Date(article.createdAt).toLocaleDateString()}
                 </p>
-                <p className="mt-4 text-[#146C94]">{article.summary}</p>
+                <p className="mt-4 text-[#752220]">{article.summary}</p>
               </div>
             </motion.div>
           ))}
