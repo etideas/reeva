@@ -1,29 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-
-// Static data for the news articles
-const newsArticles = [
-  {
-    title: "Article 1",
-    createdAt: "2024-08-01",
-    summary: "This is a summary of article 1.",
-    image: "/images/wave.jpg",
-  },
-  {
-    title: "Article 2",
-    createdAt: "2024-08-05",
-    summary: "This is a summary of article 2.",
-    image: "/images/boat3.jpg",
-  },
-  {
-    title: "Article 3",
-    createdAt: "2024-08-10",
-    summary: "This is a summary of article 3.",
-    image: "/images/boat4.jpg",
-  },
-];
+import { useFirebase } from "../context/Firebase";
 
 const MediaCoverage = () => {
+  const { listAllMedia } = useFirebase();
+  const [newsArticles, setNewsArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMediaArticles = async () => {
+      try {
+        const querySnapshot = await listAllMedia();
+        const data = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          title: doc.data().title || "Untitled",
+          imageURL: doc.data().imageURL || "/images/placeholder.jpg",
+          date: doc.data().date || "Date not available", // Use the date string directly
+          summary: doc.data().desc || "No description available",
+        }));
+        console.log("Fetched data:", data); // Check fetched data structure
+        setNewsArticles(data);
+      } catch (error) {
+        console.error("Error fetching media articles:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMediaArticles();
+  }, [listAllMedia]);
+
+  if (loading) return <div>Loading...</div>;
+
   return (
     <div className="min-h-screen bg-[#F6F1F1] pt-44 p-8">
       <div className="max-w-4xl mx-auto">
@@ -38,7 +46,7 @@ const MediaCoverage = () => {
         <div className="space-y-8">
           {newsArticles.map((article, index) => (
             <motion.div
-              key={index}
+              key={article.id}
               className="bg-[#F6F1F1] p-6 rounded-lg shadow-lg flex flex-col md:flex-row items-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -46,8 +54,8 @@ const MediaCoverage = () => {
             >
               <div className="md:w-1/3">
                 <motion.img
-                  src={article.image} // Use static path for images
-                  alt={article.title}
+                  src={article.imageURL} // Access the image URL directly
+                  alt={article.title || "News Image"}
                   className="rounded-lg w-full h-48 object-cover md:h-auto"
                   initial={{ scale: 0.95 }}
                   animate={{ scale: 1 }}
@@ -59,7 +67,7 @@ const MediaCoverage = () => {
                   {article.title}
                 </h2>
                 <p className="text-sm text-[#752220]">
-                  {new Date(article.createdAt).toLocaleDateString()}
+                  {article.date} {/* Display the date string directly */}
                 </p>
                 <p className="mt-4 text-[#752220]">{article.summary}</p>
               </div>
