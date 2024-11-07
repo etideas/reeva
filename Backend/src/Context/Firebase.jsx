@@ -205,6 +205,11 @@ const deleteVideo = async (id) => {
 };
 
 
+const listAllContact = () =>{
+  return getDocs(collection(firestore,'contacts'))
+}
+
+
 
   const isLoggedIn = user ? true : false;
 
@@ -225,6 +230,7 @@ const deleteVideo = async (id) => {
       handleCreateNewVideoListing,
       listAllVideos,
       deleteVideo,
+      listAllContact,
      
     }}>
       {props.children}

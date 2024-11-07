@@ -105,6 +105,14 @@ const Navbar = () => {
                 Media
               </Link>
             </li>
+            <li>
+              <Link
+                to="/CrewForm"
+                className="py-2 md:py-0 text-[#EEEBDD] hover:text-[#AFD3E2] transition duration-300"
+              >
+                Crew
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

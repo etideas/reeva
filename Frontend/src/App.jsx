@@ -44,10 +44,7 @@ function App() {
             component={MediaCoverage}
           />
 
-          <Route
-            path="/adminlogin"
-            component={Login}
-          />
+          
 
           {/* Add more routes here as needed */}
         </Switch>
