@@ -11,7 +11,7 @@ const MediaCoverage = () => {
     const fetchMediaArticles = async () => {
       try {
         const querySnapshot = await listAllMedia();
-        const data = querySnapshot.docs.map(doc => ({
+        const data = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           title: doc.data().title || "Untitled",
           imageURL: doc.data().imageURL || "/images/placeholder.jpg",
@@ -33,7 +33,10 @@ const MediaCoverage = () => {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div className="min-h-screen bg-[#F6F1F1] pt-44 p-8">
+    <div
+      id="media"
+      className="min-h-screen bg-[#F6F1F1] pt-44 p-8"
+    >
       <div className="max-w-4xl mx-auto">
         <motion.h1
           className="text-4xl font-bold text-center text-[#752220] mb-8"

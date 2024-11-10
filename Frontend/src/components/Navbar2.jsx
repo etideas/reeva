@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 const Navbar = () => {
@@ -17,8 +16,6 @@ const Navbar = () => {
     setLastScrollY(window.scrollY);
   };
 
-  console.log("Rendered Navbar");
-
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -26,34 +23,33 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 w-[90%] md:w-[49%] max-w-6xl text-[#EEEBDD] text-sm transition-transform duration-500 ${
+      className={`fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 w-[50%] md:w-[50%] max-w-6xl text-[#EEEBDD] text-sm transition-transform duration-500 ${
         isVisible ? "translate-y-0" : "translate-y-24"
       }`}
     >
       {/* Main Container */}
-      <div className="bg-black rounded-full shadow-lg py-2 px-4 md:px-8 flex items-center justify-between md:justify-start gap-8 md:gap-44 backdrop-blur-lg">
+      <div className="bg-black rounded-full shadow-lg md:py-2 pr-4 md:px-8 flex items-center justify-between md:justify-start md:gap-40 backdrop-blur-lg">
         {/* Logo */}
-        <Link
-          to="/"
+        <a
+          href="#home"
           className="text-xl md:text-3xl font-bold uppercase hover:text-[#AFD3E2] transition duration-300"
         >
           <img
             src={logo}
             alt="Logo"
-            className="h-16 md:h-12 rounded-full"
+            className="h-12 md:h-14 rounded-full"
           />
-        </Link>
+        </a>
 
         {/* Toggle Button (only on mobile) */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="text-3xl md:hidden focus:outline-none text-[#EEEBDD]"
+          className="text-xl md:hidden focus:outline-none text-[#EEEBDD]"
           aria-label="Toggle Menu"
         >
           {isOpen ? "✖️" : "☰"}
         </button>
 
-        {/* Navigation Links */}
         {/* Mobile Nav Links */}
         <div
           className={`${
@@ -64,44 +60,44 @@ const Navbar = () => {
         >
           <ul className="flex flex-col items-center uppercase font-medium space-y-4">
             <li>
-              <Link
-                to="/"
+              <a
+                href="#home"
                 className="py-2 text-[#EEEBDD] hover:text-[#AFD3E2] transition duration-300"
               >
                 Home
-              </Link>
+              </a>
             </li>
             <li>
-              <Link
-                to="/gallery"
+              <a
+                href="#gallery"
                 className="py-2 text-[#EEEBDD] hover:text-[#AFD3E2] transition duration-300"
               >
                 Gallery
-              </Link>
+              </a>
             </li>
             <li>
-              <Link
-                to="/youtube"
+              <a
+                href="#youtube"
                 className="py-2 text-[#EEEBDD] hover:text-[#AFD3E2] transition duration-300"
               >
                 YouTube
-              </Link>
+              </a>
             </li>
             <li>
-              <Link
-                to="/contact"
+              <a
+                href="#contact"
                 className="py-2 text-[#EEEBDD] hover:text-[#AFD3E2] transition duration-300"
               >
                 Contact Us
-              </Link>
+              </a>
             </li>
             <li>
-              <Link
-                to="/media"
+              <a
+                href="#media"
                 className="py-2 text-[#EEEBDD] hover:text-[#AFD3E2] transition duration-300"
               >
                 Media
-              </Link>
+              </a>
             </li>
           </ul>
         </div>
@@ -110,44 +106,44 @@ const Navbar = () => {
         <div className="hidden md:flex items-center space-x-8">
           <ul className="flex flex-row items-center uppercase font-medium space-x-8">
             <li>
-              <Link
-                to="/"
+              <a
+                href="#home"
                 className="py-2 text-[#EEEBDD] hover:text-[#AFD3E2] transition duration-300"
               >
                 Home
-              </Link>
+              </a>
             </li>
             <li>
-              <Link
-                to="/gallery"
+              <a
+                href="#gallery"
                 className="py-2 text-[#EEEBDD] hover:text-[#AFD3E2] transition duration-300"
               >
                 Gallery
-              </Link>
+              </a>
             </li>
             <li>
-              <Link
-                to="/youtube"
+              <a
+                href="#youtube"
                 className="py-2 text-[#EEEBDD] hover:text-[#AFD3E2] transition duration-300"
               >
                 YouTube
-              </Link>
+              </a>
             </li>
             <li>
-              <Link
-                to="/contact"
+              <a
+                href="#contact"
                 className="py-2 text-[#EEEBDD] hover:text-[#AFD3E2] transition duration-300"
               >
                 Contact Us
-              </Link>
+              </a>
             </li>
             <li>
-              <Link
-                to="/media"
+              <a
+                href="#media"
                 className="py-2 text-[#EEEBDD] hover:text-[#AFD3E2] transition duration-300"
               >
                 Media
-              </Link>
+              </a>
             </li>
           </ul>
         </div>

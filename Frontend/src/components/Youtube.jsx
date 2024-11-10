@@ -7,8 +7,12 @@ const YouTube = () => {
 
   // Function to convert standard YouTube URL to embed URL
   const convertToEmbedURL = (url) => {
-    const videoIdMatch = url.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^&\n]{11})/);
-    return videoIdMatch ? `https://www.youtube.com/embed/${videoIdMatch[1]}` : url;
+    const videoIdMatch = url.match(
+      /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^&\n]{11})/
+    );
+    return videoIdMatch
+      ? `https://www.youtube.com/embed/${videoIdMatch[1]}`
+      : url;
   };
 
   // Function to fetch videos from Firestore
@@ -33,7 +37,10 @@ const YouTube = () => {
   }, []);
 
   return (
-    <div className="min-h-screen px-8 py-16 pt-44 bg-[#F6F1F1] text-[#752220]">
+    <div
+      id="youtube"
+      className="min-h-screen px-8 py-16 pt-44 bg-[#F6F1F1] text-[#752220]"
+    >
       {/* Latest Videos Section */}
       <section className="mb-16">
         <h2 className="text-4xl font-bold text-center text-[#752220] border-b-4 border-[#752220] inline-block pb-2 mb-12">

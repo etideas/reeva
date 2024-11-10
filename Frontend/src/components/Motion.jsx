@@ -4,7 +4,7 @@ import homeVideo from "../assets/HomeVid2.MP4"; // Import the local video file
 
 const Motion = () => {
   return (
-    <>
+    <div>
       {/* First Video Section with Text Overlay */}
       <section className="relative h-screen bg-fixed m-0 p-0 overflow-hidden">
         {/* Video */}
@@ -89,7 +89,7 @@ const Motion = () => {
           adventure...
         </p>
       </section>
-    </>
+    </div>
   );
 };
 
