@@ -1,10 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import React from "react";
-import { Navbar, Nav, Container, Button } from "react-bootstrap";
-import { useFirebase } from "../Context/Firebase";  // Import Firebase context
+import { useFirebase } from "../Context/Firebase"; // Import Firebase context
+import logo from '../assets/reeva_logo.png';
 
 const NavBar = () => {
-  const { currentUser, logoutUser, isLoggedIn } = useFirebase();  // Access Firebase context
+  const { currentUser, logoutUser, isLoggedIn } = useFirebase(); // Access Firebase context
   const navigate = useNavigate(); // Initialize navigate function
 
   const handleLogout = async () => {
@@ -18,36 +18,38 @@ const NavBar = () => {
   };
 
   return (
-    <Navbar bg="dark" variant="dark">
-      <Container>
-        <Navbar.Brand as={Link} to="/">MyApp</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link as={Link} to="/">Home</Nav.Link>
+    <div className="bg-[#752220]">
+      <nav className="px-2 py-2">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <Link to="/" className="flex items-center">
+            <img src={logo} alt="Reeva Logo" className="h-[4.5rem]" />
+          </Link>
+
+          <div className="flex items-center space-x-6">
             {isLoggedIn ? (
               <>
-                <Nav.Link as={Link} to="/add/gallery">Add Gallery</Nav.Link>
-                <Nav.Link as={Link} to="/show/gallery">Show Gallery</Nav.Link>
-                <Nav.Link as={Link} to="/add/media">Add Media</Nav.Link>
-                <Nav.Link as={Link} to="/show/media">Show Media</Nav.Link>
-                <Nav.Link as={Link} to="/add/video">Add Video</Nav.Link>
-                <Nav.Link as={Link} to="/show/video">Show video</Nav.Link>
+                <Link to="/add/gallery" className="text-white hover:text-gray-300 transition duration-300">Gallery</Link>
                 
-                <Button variant="outline-light" onClick={handleLogout}>
+                <Link to="/add/media" className="text-white hover:text-gray-300 transition duration-300">Media</Link>
+                <Link to="/add/video" className="text-white hover:text-gray-300 transition duration-300">Video</Link>
+                
+                <Link to="/show/contact" className="text-white hover:text-gray-300 transition duration-300">Contact</Link>
+                <Link to="/show/crew" className="text-white hover:text-gray-300 transition duration-300">Crew</Link>
+
+                <button onClick={handleLogout} className="bg-transparent border border-white text-white py-2 px-4 rounded hover:bg-gray-700 transition duration-300">
                   Logout
-                </Button>
+                </button>
               </>
             ) : (
               <>
-                <Nav.Link as={Link} to="/login">Login</Nav.Link>
-                <Nav.Link as={Link} to="/register">Register</Nav.Link>
+                <Link to="/login" className="text-white hover:text-gray-300 transition duration-300">Login</Link>
+                <Link to="/register" className="text-white hover:text-gray-300 transition duration-300">Register</Link>
               </>
             )}
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+          </div>
+        </div>
+      </nav>
+    </div>
   );
 };
 

@@ -17,7 +17,6 @@ import { v4 as uuidv4 } from 'uuid';
 // Create a context for Firebase
 const FirebaseContext = createContext(null);
 
-// Firebase configuration object
 const firebaseConfig = {
   apiKey: "",
   authDomain: "",
@@ -193,6 +192,7 @@ const deleteItemMedia = async (id) => {
 const listAllVideos = () => {
   return getDocs(collection(firestore, 'videos'));
 };
+//delete all video
 const deleteVideo = async (id) => {
   try {
     const videoRef = doc(firestore, 'videos', id);  // Get reference to the document by ID
@@ -203,7 +203,25 @@ const deleteVideo = async (id) => {
     throw error;  // Propagate error
   }
 };
-
+//display all contacts
+const listAllContacts = () => {
+  return getDocs(collection(firestore, 'contacts'));
+};
+//display all crew
+const listAllCrew = () => {
+  return getDocs(collection(firestore, 'crew'));
+};
+//delete crew
+const deleteCrew = async (id) => {
+  try {
+    const crewRef = doc(firestore, 'crew', id);  // Get reference to the document by ID
+    await deleteDoc(crewRef);  // Delete the document from Firestore
+    console.log("Crew member deleted successfully");
+  } catch (error) {
+    console.error("Error deleting crew member:", error.message);
+    throw error;  // Propagate error
+  }
+};
 
 
   const isLoggedIn = user ? true : false;
@@ -225,6 +243,9 @@ const deleteVideo = async (id) => {
       handleCreateNewVideoListing,
       listAllVideos,
       deleteVideo,
+      listAllContacts,
+      listAllCrew,
+      deleteCrew
      
     }}>
       {props.children}

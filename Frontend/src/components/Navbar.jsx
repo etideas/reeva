@@ -10,33 +10,28 @@ const Navbar = () => {
   // Function to handle scroll
   const handleScroll = () => {
     if (window.scrollY > lastScrollY) {
-      // If user is scrolling down, hide the navbar
-      setIsVisible(false);
+      setIsVisible(false); // Hide navbar on scroll down
     } else {
-      // If user is scrolling up, show the navbar
-      setIsVisible(true);
+      setIsVisible(true); // Show navbar on scroll up
     }
     setLastScrollY(window.scrollY);
   };
 
-  useEffect(() => {
-    // Add scroll event listener
-    window.addEventListener("scroll", handleScroll);
+  console.log("Rendered Navbar");
 
-    // Cleanup function to remove the event listener when the component unmounts
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
   return (
     <nav
-      className={`fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 w-[53%] max-w-6xl text-[#EEEBDD] text-sm transition-transform duration-500 ${
+      className={`fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 w-[90%] md:w-[49%] max-w-6xl text-[#EEEBDD] text-sm transition-transform duration-500 ${
         isVisible ? "translate-y-0" : "translate-y-24"
       }`}
     >
       {/* Main Container */}
-      <div className="bg-black rounded-full shadow-lg py-2 px-8 flex items-center gap-48 backdrop-blur-lg">
+      <div className="bg-black rounded-full shadow-lg py-2 px-4 md:px-8 flex items-center justify-between md:justify-start gap-8 md:gap-44 backdrop-blur-lg">
         {/* Logo */}
         <Link
           to="/"
@@ -45,30 +40,33 @@ const Navbar = () => {
           <img
             src={logo}
             alt="Logo"
-            className="h-12 md:h-10 rounded-full"
+            className="h-16 md:h-12 rounded-full"
           />
         </Link>
 
-        {/* Toggle Button (for small screens) */}
+        {/* Toggle Button (only on mobile) */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="text-3xl md:hidden focus:outline-none"
+          className="text-3xl md:hidden focus:outline-none text-[#EEEBDD]"
           aria-label="Toggle Menu"
         >
           {isOpen ? "✖️" : "☰"}
         </button>
 
         {/* Navigation Links */}
+        {/* Mobile Nav Links */}
         <div
-          className={`flex flex-col md:flex-row md:items-center absolute md:static top-[4.5rem] left-0 right-0 mx-auto md:mx-0 md:w-auto  rounded-lg md:rounded-none shadow-lg md:shadow-none py-6 md:py-0 px-8 md:px-0 transform md:transform-none transition-all duration-300 ${
+          className={`${
             isOpen ? "flex" : "hidden"
-          } md:flex`}
+          } md:hidden flex-col absolute bottom-full left-0 w-full bg-black rounded-lg shadow-lg py-4 px-8 z-40 transform transition-all duration-300 ${
+            isOpen ? "translate-y-[-1rem]" : "translate-y-0"
+          }`}
         >
-          <ul className="flex flex-col md:flex-row md:space-x-12 items-center md:text-sm uppercase font-medium">
+          <ul className="flex flex-col items-center uppercase font-medium space-y-4">
             <li>
               <Link
                 to="/"
-                className="py-2 md:py-0 text-[#EEEBDD] hover:text-[#AFD3E2] transition duration-300"
+                className="py-2 text-[#EEEBDD] hover:text-[#AFD3E2] transition duration-300"
               >
                 Home
               </Link>
@@ -76,7 +74,7 @@ const Navbar = () => {
             <li>
               <Link
                 to="/gallery"
-                className="py-2 md:py-0 text-[#EEEBDD] hover:text-[#AFD3E2] transition duration-300"
+                className="py-2 text-[#EEEBDD] hover:text-[#AFD3E2] transition duration-300"
               >
                 Gallery
               </Link>
@@ -84,7 +82,7 @@ const Navbar = () => {
             <li>
               <Link
                 to="/youtube"
-                className="py-2 md:py-0 text-[#EEEBDD] hover:text-[#AFD3E2] transition duration-300"
+                className="py-2 text-[#EEEBDD] hover:text-[#AFD3E2] transition duration-300"
               >
                 YouTube
               </Link>
@@ -92,7 +90,7 @@ const Navbar = () => {
             <li>
               <Link
                 to="/contact"
-                className="py-2 md:py-0 text-[#EEEBDD] hover:text-[#AFD3E2] transition duration-300"
+                className="py-2 text-[#EEEBDD] hover:text-[#AFD3E2] transition duration-300"
               >
                 Contact Us
               </Link>
@@ -100,7 +98,53 @@ const Navbar = () => {
             <li>
               <Link
                 to="/media"
-                className="py-2 md:py-0 text-[#EEEBDD] hover:text-[#AFD3E2] transition duration-300"
+                className="py-2 text-[#EEEBDD] hover:text-[#AFD3E2] transition duration-300"
+              >
+                Media
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        {/* Desktop Nav Links */}
+        <div className="hidden md:flex items-center space-x-8">
+          <ul className="flex flex-row items-center uppercase font-medium space-x-8">
+            <li>
+              <Link
+                to="/"
+                className="py-2 text-[#EEEBDD] hover:text-[#AFD3E2] transition duration-300"
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/gallery"
+                className="py-2 text-[#EEEBDD] hover:text-[#AFD3E2] transition duration-300"
+              >
+                Gallery
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/youtube"
+                className="py-2 text-[#EEEBDD] hover:text-[#AFD3E2] transition duration-300"
+              >
+                YouTube
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/contact"
+                className="py-2 text-[#EEEBDD] hover:text-[#AFD3E2] transition duration-300"
+              >
+                Contact Us
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/media"
+                className="py-2 text-[#EEEBDD] hover:text-[#AFD3E2] transition duration-300"
               >
                 Media
               </Link>
