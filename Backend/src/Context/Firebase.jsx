@@ -260,6 +260,7 @@ const deleteVideo = async (id) => {
     throw error;  // Propagate error
   }
 };
+<<<<<<< HEAD
 
 const handleUpdateVideo = async (id, updatedData, newVideo) => {
   try {
@@ -288,6 +289,8 @@ const handleUpdateVideo = async (id, updatedData, newVideo) => {
 
 
 ////////////////////////////////////////////////////////CONTACT---------------------/////////////////
+=======
+>>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
 //display all contacts
 const listAllContacts = () => {
   return getDocs(collection(firestore, 'contacts'));
@@ -331,6 +334,7 @@ const deleteCrew = async (id) => {
       deleteVideo,
       listAllContacts,
       listAllCrew,
+<<<<<<< HEAD
       deleteCrew,
 
      handleUpdateItem,
@@ -338,6 +342,9 @@ const deleteCrew = async (id) => {
      listAllGalleryMedia,
 
 
+=======
+      deleteCrew
+>>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
      
    
     }}>

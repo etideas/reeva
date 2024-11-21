@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore';
+import { getFirestore, collection, getDocs, addDoc} from 'firebase/firestore';
 
 // Create a context for Firebase
 const FirebaseContext = createContext(null);
@@ -40,11 +40,40 @@ export const FirebaseProvider = (props) => {
     return getDocs(collection(firestore, 'videos'));
   };
 
+   // Function to store crew form data
+   const storeCrewFormData = async (formData) => {
+    try {
+      // Add a new document to the 'crew' collection
+      const docRef = await addDoc(collection(firestore, 'crew'), formData);
+      console.log("Document written with ID: ", docRef.id);
+      return docRef.id;  // Return the document ID if needed
+    } catch (error) {
+      console.error("Error adding document: ", error);
+      throw error;  // Re-throw the error if you want to handle it in the component
+    }
+  };
+
+  // Function to store contact form data
+  const storeContactFormData = async (formData) => {
+    try {
+      // Add a new document to the 'contacts' collection
+      const docRef = await addDoc(collection(firestore, 'contacts'), formData);
+      console.log("Contact document written with ID: ", docRef.id);
+      return docRef.id; // Return the document ID if needed
+    } catch (error) {
+      console.error("Error adding contact document: ", error);
+      throw error; // Re-throw the error if you want to handle it in the component
+    }
+  };
+
+
   return (
     <FirebaseContext.Provider value={{
       listAllGallery,
       listAllMedia,
       listAllVideos,
+      storeCrewFormData,
+      storeContactFormData
     }}>
       {props.children}
     </FirebaseContext.Provider>
