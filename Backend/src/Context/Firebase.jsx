@@ -9,7 +9,7 @@ import {
   signOut,  // Import signOut
   onAuthStateChanged
 } from 'firebase/auth';
-import {getFirestore, collection, addDoc, getDocs, getDoc, deleteDoc, doc} from 'firebase/firestore';
+import {getFirestore, collection, addDoc, getDocs, getDoc, deleteDoc, doc,  updateDoc} from 'firebase/firestore';
 import { getStorage, ref, uploadBytes ,getDownloadURL} from "firebase/storage";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -17,15 +17,14 @@ import { v4 as uuidv4 } from 'uuid';
 // Create a context for Firebase
 const FirebaseContext = createContext(null);
 
-// Firebase configuration object
 const firebaseConfig = {
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: "",
-  measurementId: ""
+  apiKey: "AIzaSyAWMcVxRYc9QwYhBNaYQfaI3cwi_eFeLfA",
+  authDomain: "reevaadmin-781c5.firebaseapp.com",
+  projectId: "reevaadmin-781c5",
+  storageBucket: "reevaadmin-781c5.appspot.com",
+  messagingSenderId: "682620285467",
+  appId: "1:682620285467:web:da0d7e8eb2482ace727ebe",
+  measurementId: "G-RJSM3S7H2J"
 };
 
 // Initialize Firebase
@@ -92,7 +91,7 @@ export const FirebaseProvider = (props) => {
     }
   };
 
-
+/////////////////////////////////////////GALLERY------------------------------------- 
   const handleCreateNewListing = async (title, desc, cover) => {
     try {
       const imageRef = ref(storage, `uploads/images/${Date.now()}-${cover.name}`);
@@ -112,10 +111,37 @@ export const FirebaseProvider = (props) => {
       throw error;  // Propagate the error for handling
     }
   };
+  const handleUpdateItem = async (id, updatedData, newImage) => {
+    try {
+      const itemRef = doc(firestore, 'gallery', id); // Get reference to the document by ID
+  
+      // If a new image is provided, upload it and get the new URL
+      if (newImage) {
+        const imageRef = ref(storage, `uploads/images/${Date.now()}-${newImage.name}`);
+        const uploadResult = await uploadBytes(imageRef, newImage);
+        const newImageURL = await getDownloadURL(uploadResult.ref);
+  
+        // Update the imageURL in updatedData
+        updatedData.imageURL = newImageURL;
+      }
+  
+      // Update the Firestore document with the updated data
+      await updateDoc(itemRef, updatedData);
+      console.log("Item updated successfully with new data.");
+    } catch (error) {
+      console.error("Error updating item:", error.message);
+      throw error; // Propagate error
+    }
+  };
+  
 
 const listAllGallery = () =>{
   return getDocs(collection(firestore,'gallery'))
 }
+// In your Firebase context or service file
+
+
+
 
 const deleteItem = async (id) => {
   try {
@@ -131,45 +157,75 @@ const deleteItem = async (id) => {
 //////////////////////////////MEDIA-------------------------------------
 const handleCreateNewListingMedia = async (title, desc, cover, date) => {
   try {
-    // Reference to Firebase storage for uploading the cover image
-    const imageRef = ref(storage, `uploadsMedia/images/${Date.now()}-${cover.name}`);
-    
-    // Upload the image to Firebase storage
+    const imageRef = ref(storage, `uploads/images/${Date.now()}-${cover.name}`);
     const uploadResult = await uploadBytes(imageRef, cover);
     
     // Get the download URL of the uploaded image
     const downloadURL = await getDownloadURL(uploadResult.ref);
     
-    // Save the listing (title, description, date, and image URL) in Firestore
+    // Get the current timestamp for the date created
+    const dateCreated = new Date();
+
+    // Save the listing with the image's download URL and date
     return await addDoc(collection(firestore, "media"), {
       title,
       desc,
-      date,  // Include the date in the Firestore document
-      imageURL: downloadURL,  // Store the download URL of the image
+      imageURL: downloadURL,  // Store the download URL
+      date,            // Store the date created
     });
   } catch (error) {
     console.error("Error uploading image and saving listing:", error.message);
     throw error;  // Propagate the error for handling
   }
 };
-
-
-const listAllMedia = () =>{
-  return getDocs(collection(firestore,'media'))
-}
-
-const deleteItemMedia = async (id) => {
+const handleUpdateItemMedia = async (id, updatedData, newImage) => {
   try {
-    console.log("Deleting item with ID:", id); // Log the ID to confirm it's correct
     const itemRef = doc(firestore, 'media', id); // Get reference to the document by ID
-    await deleteDoc(itemRef); // Attempt to delete the document
-    console.log("Media deleted successfully");
+
+    // If a new image is provided, upload it and get the new URL
+    if (newImage) {
+      const imageRef = ref(storage, `uploads/images/${Date.now()}-${newImage.name}`);
+      const uploadResult = await uploadBytes(imageRef, newImage);
+      const newImageURL = await getDownloadURL(uploadResult.ref);
+
+      // Update the imageURL in updatedData
+      updatedData.imageURL = newImageURL;
+    }
+
+    // Update the Firestore document with the updated data
+    // Add a new dateUpdated field with the current timestamp
+    updatedData.dateUpdated = new Date();
+
+    await updateDoc(itemRef, updatedData);
+    console.log("Item updated successfully with new data.");
   } catch (error) {
-    console.error("Error deleting media item:", error); // Log the full error message
+    console.error("Error updating item:", error.message);
     throw error; // Propagate error
   }
 };
 
+
+
+const listAllGalleryMedia = () =>{
+return getDocs(collection(firestore,'media'))
+}
+// In your Firebase context or service file
+
+
+
+
+const deleteItemMedia = async (id) => {
+try {
+  const itemRef = doc(firestore, 'media', id);  // Get reference to the document by ID
+  await deleteDoc(itemRef);  // Delete the document
+  console.log("Item deleted successfully");
+} catch (error) {
+  console.error("Error deleting item:", error.message);
+  throw error;  // Propagate error
+}
+};
+
+///////////////////////////////////////////////////////VIDEO-------------////////////////// 
 
 
  // Function to handle video upload
@@ -193,6 +249,7 @@ const deleteItemMedia = async (id) => {
 const listAllVideos = () => {
   return getDocs(collection(firestore, 'videos'));
 };
+//delete all video
 const deleteVideo = async (id) => {
   try {
     const videoRef = doc(firestore, 'videos', id);  // Get reference to the document by ID
@@ -204,6 +261,52 @@ const deleteVideo = async (id) => {
   }
 };
 
+const handleUpdateVideo = async (id, updatedData, newVideo) => {
+  try {
+    const videoRef = doc(firestore, 'videos', id); // Get reference to the document by ID
+
+    // If a new video is provided, upload it and get the new URL
+    if (newVideo) {
+      const videoRef = ref(storage, `uploads/videos/${Date.now()}-${newVideo.name}`);
+      const uploadResult = await uploadBytes(videoRef, newVideo);
+      const newVideoURL = await getDownloadURL(uploadResult.ref);
+
+      // Update the videoURL in updatedData
+      updatedData.videoURL = newVideoURL;
+    }
+
+    // Update the Firestore document with the updated data
+    await updateDoc(videoRef, updatedData);
+    console.log("Video updated successfully with new data.");
+  } catch (error) {
+    console.error("Error updating video:", error.message);
+    throw error; // Propagate error
+  }
+};
+
+
+
+
+////////////////////////////////////////////////////////CONTACT---------------------/////////////////
+//display all contacts
+const listAllContacts = () => {
+  return getDocs(collection(firestore, 'contacts'));
+};
+//display all crew
+const listAllCrew = () => {
+  return getDocs(collection(firestore, 'crew'));
+};
+//delete crew
+const deleteCrew = async (id) => {
+  try {
+    const crewRef = doc(firestore, 'crew', id);  // Get reference to the document by ID
+    await deleteDoc(crewRef);  // Delete the document from Firestore
+    console.log("Crew member deleted successfully");
+  } catch (error) {
+    console.error("Error deleting crew member:", error.message);
+    throw error;  // Propagate error
+  }
+};
 
 
   const isLoggedIn = user ? true : false;
@@ -220,12 +323,23 @@ const deleteVideo = async (id) => {
       listAllGallery,
       deleteItem,
       handleCreateNewListingMedia,
-      listAllMedia,
+    
       deleteItemMedia,
       handleCreateNewVideoListing,
       listAllVideos,
+      handleUpdateVideo,
       deleteVideo,
+      listAllContacts,
+      listAllCrew,
+      deleteCrew,
+
+     handleUpdateItem,
+     handleUpdateItemMedia,
+     listAllGalleryMedia,
+
+
      
+   
     }}>
       {props.children}
     </FirebaseContext.Provider>
