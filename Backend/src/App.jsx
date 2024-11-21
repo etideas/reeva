@@ -9,11 +9,14 @@ import NavBar from "./components/Navbar";
 import RegisterPage from "./pages/Register";
 import LoginPage from './pages/Login'
 import AddGallery from "./pages/AddGallery";
-import ShowGallery from "./pages/showGallery";
+
 import AddMedia from "./pages/AddMedia";
-import ShowMedia from './pages/ShowMedia';
+import ShowContact from './pages/ShowContact'
+import ShowCrew from './pages/ShowCrew';
 import AddVideo from './pages/AddVideo';
-import ShowVideo from './pages/ShowVideo';
+
+
+
 
 
 function App() {
@@ -22,15 +25,16 @@ function App() {
        <NavBar/>
    <Routes>
   
-     <Route path="/" element={<h1>Home</h1>} />
      <Route path="/login" element={<LoginPage />} />
      <Route path="/register" element={<RegisterPage />} />
      <Route path="/add/gallery" element={<AddGallery/>} />
-     <Route path="/show/gallery" element={<ShowGallery/>} />
+     <Route path="/show/contact" element={<ShowContact/>} />
+    
      <Route path="/add/media" element={<AddMedia/>} />
-     <Route path="/show/media" element={<ShowMedia/>} />
+     <Route path="/show/crew" element={<ShowCrew/>} />
      <Route path="/add/video" element={<AddVideo/>} />
-     <Route path="/show/video" element={<ShowVideo/>} />
+    
+          
    
      
    </Routes>
