@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+<<<<<<< HEAD
+=======
+import { useFirebase } from "../context/Firebase"; // Import the Firebase context
+>>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
 
 function CrewForm() {
   const [formData, setFormData] = useState({
@@ -26,15 +30,32 @@ function CrewForm() {
     nokContact: "",
   });
 
+<<<<<<< HEAD
+=======
+  const { storeCrewFormData } = useFirebase(); // Use the Firebase context
+
+>>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+<<<<<<< HEAD
   const handleSubmit = (e) => {
     e.preventDefault();
     // Placeholder for form submission logic
     console.log("Form data submitted:", formData);
+=======
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      // Store the form data in Firebase
+      const docId = await storeCrewFormData(formData);
+      console.log("Crew form data submitted with ID:", docId);
+    } catch (error) {
+      console.error("Error submitting form data:", error);
+    }
+>>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
   };
 
   const INPUT_FIELDS =

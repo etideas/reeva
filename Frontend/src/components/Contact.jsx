@@ -1,11 +1,17 @@
+<<<<<<< HEAD
 import React from "react";
+=======
+import React, { useState } from "react";
+>>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
 import { ImEnvelop } from "react-icons/im";
 import { IoLocation } from "react-icons/io5";
 import { FaFacebookSquare, FaInstagramSquare } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { CiYoutube } from "react-icons/ci";
+import { useFirebase } from '../context/Firebase';
 
 const Contact = () => {
+<<<<<<< HEAD
   return (
     <div
       id="contact"
@@ -22,6 +28,38 @@ const Contact = () => {
           <div className="text-[#F6F1F1] pt-2 text-sm md:text-base">
             Lorem ipsum dolor sit amet consectetur, molestias, nesciunt
             laudantium eius quidem totam explicabo id culpa harum.
+=======
+  const { storeContactFormData } = useFirebase();
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [submissionStatus, setSubmissionStatus] = useState("");
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await storeContactFormData(formData);
+      setSubmissionStatus("Your message has been sent successfully!");
+      setFormData({ name: "", email: "", message: "" }); // Clear the form
+    } catch (error) {
+      setSubmissionStatus("Failed to send your message. Please try again.");
+    }
+  };
+
+  return (
+    <div id="contact" className="flex w-full min-h-screen justify-center items-center relative px-4 sm:px-8 py-8">
+      <div className="flex flex-col md:flex-row bg-[#752220] w-full max-w-4xl p-6 sm:p-8 rounded-xl shadow-lg text-[#F6F1F1] mt-8 sm:mt-[100px] relative z-10 space-y-6 md:space-y-0 md:space-x-6">
+        <div className="flex flex-col space-y-6 justify-between md:w-1/2">
+          {/* Contact Details Section */}
+          <div>
+            <h1 className="font-bold text-3xl md:text-4xl tracking-wide text-[#F6F1F1]">Contact Us</h1>
+          </div>
+          <div className="text-[#F6F1F1] pt-2 text-sm md:text-base">
+            Lorem ipsum dolor sit amet consectetur, molestias, nesciunt laudantium eius quidem totam explicabo id culpa harum.
+>>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
           </div>
           <div className="flex flex-col space-y-4">
             <div className="inline-flex items-center space-x-2">
@@ -36,6 +74,7 @@ const Contact = () => {
 
           {/* Social Media Links */}
           <div className="flex space-x-4 pt-4">
+<<<<<<< HEAD
             <a href="#">
               <FaFacebookSquare className="text-2xl text-[#AFD3E2] hover:text-[#F6F1F1] transition duration-200" />
             </a>
@@ -48,11 +87,18 @@ const Contact = () => {
             <a href="#">
               <FaInstagramSquare className="text-2xl text-[#AFD3E2] hover:text-[#F6F1F1] transition duration-200" />
             </a>
+=======
+            <a href="#"><FaFacebookSquare className="text-2xl text-[#AFD3E2] hover:text-[#F6F1F1] transition duration-200" /></a>
+            <a href="#"><FaXTwitter className="text-2xl text-[#AFD3E2] hover:text-[#F6F1F1] transition duration-200" /></a>
+            <a href="#"><CiYoutube className="text-2xl text-[#AFD3E2] hover:text-[#F6F1F1] transition duration-200" /></a>
+            <a href="#"><FaInstagramSquare className="text-2xl text-[#AFD3E2] hover:text-[#F6F1F1] transition duration-200" /></a>
+>>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
           </div>
         </div>
 
         {/* Form Section */}
         <div className="bg-[#F6F1F1] shadow-lg rounded-xl p-6 sm:p-8 text-[#752220] md:w-1/2">
+<<<<<<< HEAD
           <form className="flex flex-col space-y-4">
             <div>
               <label
@@ -61,30 +107,50 @@ const Contact = () => {
               >
                 Name
               </label>
+=======
+          <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="name" className="text-sm">Name</label>
+>>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
               <input
                 type="text"
                 id="name"
                 placeholder="Your name"
+<<<<<<< HEAD
+=======
+                value={formData.name}
+                onChange={handleChange}
+>>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
                 className="ring ring-1 ring-[#752220] w-full rounded-md px-4 py-2 outline-none focus:ring-2 focus:ring-[#752220] mt-2"
               />
             </div>
 
             <div>
+<<<<<<< HEAD
               <label
                 htmlFor="email"
                 className="text-sm"
               >
                 Email
               </label>
+=======
+              <label htmlFor="email" className="text-sm">Email</label>
+>>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
               <input
                 type="email"
                 id="email"
                 placeholder="Your Email address"
+<<<<<<< HEAD
+=======
+                value={formData.email}
+                onChange={handleChange}
+>>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
                 className="ring ring-1 ring-[#752220] w-full rounded-md px-4 py-2 outline-none focus:ring-2 focus:ring-[#752220] mt-2"
               />
             </div>
 
             <div>
+<<<<<<< HEAD
               <label
                 htmlFor="message"
                 className="text-sm"
@@ -94,6 +160,14 @@ const Contact = () => {
               <textarea
                 id="message"
                 placeholder="Your message"
+=======
+              <label htmlFor="message" className="text-sm">Message</label>
+              <textarea
+                id="message"
+                placeholder="Your message"
+                value={formData.message}
+                onChange={handleChange}
+>>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
                 className="ring ring-1 ring-[#752220] w-full rounded-md px-4 py-2 outline-none focus:ring-2 focus:ring-[#752220] mt-2 h-32"
               />
             </div>
@@ -106,6 +180,10 @@ const Contact = () => {
                 Send Message
               </button>
             </div>
+<<<<<<< HEAD
+=======
+            {submissionStatus && <p className="text-sm text-center mt-4">{submissionStatus}</p>}
+>>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
           </form>
         </div>
       </div>

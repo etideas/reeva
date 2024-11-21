@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 import { useFirebase } from "../Context/Firebase";
+=======
+import React, { useState, useEffect } from 'react';
+import { useFirebase } from '../Context/Firebase';
+>>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
 
 const AddVideo = () => {
   const firebase = useFirebase();
@@ -7,13 +12,17 @@ const AddVideo = () => {
   const [title, setTitle] = useState("");
   const [videoURL, setVideoURL] = useState("");
   const [videos, setVideos] = useState([]);
+<<<<<<< HEAD
   const [editVideoId, setEditVideoId] = useState(null); // To track the video being edited
   const [isModalOpen, setIsModalOpen] = useState(false); // To manage modal visibility
+=======
+>>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
+<<<<<<< HEAD
       // Only convert the URL if it's not already in the embed format
       const embedUrl = videoURL.includes("https://www.youtube.com/embed/")
         ? videoURL
@@ -38,6 +47,21 @@ const AddVideo = () => {
       setVideoURL("");
       setEditVideoId(null);
       setIsModalOpen(false); // Close modal after updating
+=======
+      // Validate YouTube URL format to ensure it's embeddable
+      const embedUrl = convertToEmbedURL(videoURL);
+      if (!embedUrl) {
+        alert("Please enter a valid YouTube video URL.");
+        return;
+      }
+
+      await firebase.handleCreateNewVideoListing(title, embedUrl);
+
+      setTitle("");
+      setVideoURL("");
+
+      console.log("Video successfully added!");
+>>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
       fetchVideos();
     } catch (error) {
       console.error("Error handling video:", error.message);
@@ -47,9 +71,15 @@ const AddVideo = () => {
   const fetchVideos = async () => {
     try {
       const videoList = await firebase.listAllVideos();
+<<<<<<< HEAD
       const videoData = videoList.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
+=======
+      const videoData = videoList.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+>>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
       }));
       setVideos(videoData);
     } catch (error) {
@@ -58,6 +88,7 @@ const AddVideo = () => {
   };
 
   const convertToEmbedURL = (url) => {
+<<<<<<< HEAD
     try {
       const urlObj = new URL(url);
       if (urlObj.hostname.includes("youtube.com")) {
@@ -90,6 +121,13 @@ const AddVideo = () => {
     setVideoURL(video.videoURL);
     setEditVideoId(video.id);
     setIsModalOpen(true); // Open modal
+=======
+    const urlObj = new URL(url);
+    if (urlObj.hostname.includes("youtube.com") || urlObj.hostname.includes("youtu.be")) {
+      return `https://www.youtube.com/embed/${urlObj.searchParams.get("v") || urlObj.pathname.split("/")[1]}`;
+    }
+    return null;
+>>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
   };
 
   useEffect(() => {
@@ -100,6 +138,7 @@ const AddVideo = () => {
     <div className="container mx-auto px-6 py-12">
       <h2 className="text-3xl font-bold mb-8 text-[#752220] text-center">Add New Video</h2>
 
+<<<<<<< HEAD
       <form
         onSubmit={handleSubmit}
         className="bg-white p-8 rounded-lg shadow-lg max-w-lg mx-auto space-y-6"
@@ -112,6 +151,13 @@ const AddVideo = () => {
           >
             Video Title
           </label>
+=======
+      <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-lg max-w-lg mx-auto space-y-6">
+        
+        {/* Title Field */}
+        <div>
+          <label htmlFor="title" className="block text-lg font-semibold text-gray-700 mb-2">Video Title</label>
+>>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
           <input
             onChange={(e) => setTitle(e.target.value)}
             value={title}
@@ -125,12 +171,16 @@ const AddVideo = () => {
 
         {/* Video URL Field */}
         <div>
+<<<<<<< HEAD
           <label
             htmlFor="videoURL"
             className="block text-lg font-semibold text-gray-700 mb-2"
           >
             Video URL
           </label>
+=======
+          <label htmlFor="videoURL" className="block text-lg font-semibold text-gray-700 mb-2">Video URL</label>
+>>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
           <input
             onChange={(e) => setVideoURL(e.target.value)}
             value={videoURL}
@@ -146,7 +196,11 @@ const AddVideo = () => {
           type="submit"
           className="w-full bg-[#752220] text-white p-4 rounded-lg hover:bg-[#8c2b2f] transition-colors"
         >
+<<<<<<< HEAD
           {editVideoId ? "Update Video" : "Create Video"}
+=======
+          Create Video
+>>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
         </button>
       </form>
 
@@ -169,6 +223,7 @@ const AddVideo = () => {
                       allowFullScreen
                     ></iframe>
                   </div>
+<<<<<<< HEAD
                   <div className="flex justify-between mt-4">
                     <button
                       onClick={() => editVideo(video)}
@@ -183,6 +238,8 @@ const AddVideo = () => {
                       Delete
                     </button>
                   </div>
+=======
+>>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
                 </div>
               </div>
             ))
