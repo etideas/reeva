@@ -39,11 +39,11 @@ const YouTube = () => {
   return (
     <div
       id="youtube"
-      className="min-h-screen px-8 py-16 pt-44 bg-[#F6F1F1] text-[#752220]"
+      className="min-h-screen px-8 py-16 pt-44 bg-gray-900 text-white"
     >
       {/* Latest Videos Section */}
       <section className="mb-16">
-        <h2 className="text-4xl font-bold text-center text-[#752220] border-b-4 border-[#752220] inline-block pb-2 mb-12">
+        <h2 className="text-4xl font-bold text-center text-white border-b-4 border-[#752220] inline-block pb-2 mb-12">
           Latest Videos
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12">
@@ -74,7 +74,7 @@ const YouTube = () => {
 
       {/* Other Videos Section */}
       <section>
-        <h2 className="text-4xl font-bold text-center text-[#752220] border-b-4 border-[#752220] inline-block pb-2 mb-12">
+        <h2 className="text-4xl font-bold text-center  border-b-4 border-[#752220] inline-block pb-2 mb-12">
           Other Videos
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">

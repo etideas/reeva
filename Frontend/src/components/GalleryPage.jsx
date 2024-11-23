@@ -1,69 +1,59 @@
-// src/Gallery.js
+// src/GalleryPage.jsx
 import React, { useEffect, useState } from "react";
-import { useFirebase } from "../context/Firebase"; // Import useFirebase hook
-import img1 from "../assets/img/img1.jpg"; // Import a default image if needed
+import { useFirebase } from "../context/Firebase"; // Assuming you're using Firebase for image fetching
+import Gallery from "react-image-gallery"; // Importing the react-image-gallery component
+import "react-image-gallery/styles/css/image-gallery.css"; // Importing default styles
 
-const Gallery = () => {
-  const { listAllGallery } = useFirebase(); // Use the context to get listAllGallery function
-  const [imageInfo, setImageInfo] = useState([]); // State to hold image data
-  const [loading, setLoading] = useState(true); // State to manage loading status
+const GalleryPage = () => {
+  const { listAllGallery } = useFirebase(); // Assuming you have a custom hook to fetch images from Firebase
+  const [imageInfo, setImageInfo] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const querySnapshot = await listAllGallery(); // Use the context function
+        const querySnapshot = await listAllGallery();
         const data = querySnapshot.docs.map((doc) => ({
-          id: doc.id, // Get document ID
-          ...doc.data(), // Spread document data
+          id: doc.id,
+          ...doc.data(),
         }));
-        setImageInfo(data); // Set the imageInfo state with fetched data
+        setImageInfo(data); // Set the image data to state
       } catch (error) {
         console.error("Error fetching data:", error);
-      } finally {
-        setLoading(false); // Set loading to false after fetching
       }
     };
+    fetchData();
+  }, [listAllGallery]);
 
-    fetchData(); // Call fetchData function
-  }, [listAllGallery]); // Add listAllGallery as a dependency
-
-  if (loading) {
-    return <div>Loading...</div>; // Show loading state while data is being fetched
-  }
+  // Convert the Firebase data to match the format required by react-image-gallery
+  const galleryImages = imageInfo.map((card) => ({
+    original: card.imageURL, // URL for the full-size image
+    thumbnail: card.imageURL, // URL for the thumbnail image
+    description: card.desc, // Optional description for each image
+  }));
 
   return (
     <div
       id="gallery"
-      className="flex flex-col items-center bg-[#F6F1F1] min-h-screen py-10 pt-44"
+      className="gallery-container px-4 pt-12 bg-gray-900"
     >
-      {/* Gallery Title */}
-      <h2 className="text-4xl font-bold text-center text-[#752220] border-b-4 border-[#752220] inline-block pb-2 mb-12">
+      {" "}
+      {/* Added padding to the X-axis */}
+      <h2 className="text-center text-4xl md:text-5xl font-bold text-white mb-12">
         Gallery
       </h2>
-
-      {/* Gallery Grid Section */}
-      <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mx-4">
-        {imageInfo.map((card) => (
-          <div
-            key={card.id}
-            className="relative group rounded-lg overflow-hidden shadow-lg transition-transform duration-300 transform hover:scale-105 bg-[#752220]"
-          >
-            <img
-              src={card.imageURL} // This should now contain the full URL of the uploaded image
-              alt={card.title}
-              className="w-[200px] h-[250px] object-cover rounded-t-lg"
-            />
-            {/* Overlay Section */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#752220] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="absolute bottom-0 left-0 w-full p-6 bg-[#F6F1F1] bg-opacity-50 backdrop-blur-sm shadow-md transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 rounded-b-lg">
-              <h3 className="text-lg font-bold text-[#752220]">{card.title}</h3>
-              <p className="text-sm text-[#752220] mt-2">{card.desc}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+      {/* React Image Gallery component */}
+      <Gallery
+        items={galleryImages}
+        showPlayButton={false} // Disable the play button (autoplay)
+        showFullscreenButton={false} // Disable the fullscreen button
+        showNav={false} // Disable the navigation (prev/next) controls
+        autoPlay={true} // Enable autoplay
+        slideDuration={800} // Optional: Set transition duration (default: 450ms)
+        slideInterval={4000} // Set interval between slides in autoplay (2 seconds)
+        thumbnailPosition="bottom" // Thumbnail position at the bottom
+      />
     </div>
   );
 };
 
-export default Gallery;
+export default GalleryPage;
