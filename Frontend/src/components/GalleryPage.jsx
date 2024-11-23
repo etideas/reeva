@@ -55,7 +55,7 @@ const Gallery = () => {
             />
             {/* Overlay Section */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#752220] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div className="absolute bottom-0 left-0 w-full p-6 bg-[#F6F1F1] bg-opacity-90 backdrop-blur-sm shadow-md transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 rounded-b-lg">
+            <div className="absolute bottom-0 left-0 w-full p-6 bg-[#F6F1F1] bg-opacity-70 backdrop-blur-sm shadow-md transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 rounded-b-lg">
               <h3 className="text-lg font-bold text-[#752220]">{card.title}</h3>
               <p className="text-sm text-[#752220] mt-2">{card.desc}</p>
             </div>
