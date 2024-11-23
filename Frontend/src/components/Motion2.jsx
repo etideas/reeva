@@ -1,6 +1,6 @@
 import React from "react";
 import img1 from "../assets/img/img1.jpg"; // Existing image import
-import homeVideo from "../assets/HomeVid2.MP4"; // Import the local video file
+import homeVideo from "../assets/HomeVid.mov"; // Import the local video file
 
 const Motion = () => {
   // Image and text data array
@@ -34,7 +34,7 @@ const Motion = () => {
       <section className="relative h-screen bg-fixed m-0 p-0 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
           <video
-            className="w-full h-full object-cover md:scale-[1.45] md:translate-y-[-2rem] md:translate-x-[21rem]"
+            className="w-full h-full object-cover md:scale-[1.45] md:translate-y-[-2rem] md:translate-x-[15rem]"
             src={homeVideo}
             autoPlay
             loop
@@ -42,7 +42,7 @@ const Motion = () => {
             playsInline
           />
         </div>
-        <div className="absolute w-[90%] md:w-[80%] top-[20%] md:top-[43%] left-[5%] md:left-[10%] flex z-10">
+        <div className="absolute w-[90%] md:w-[80%] top-[20%] md:top-[43%] left-[5%] md:left-[4%] flex z-10">
           <div className="text-center text-white px-4 md:px-8">
             <h1 className="text-4xl md:text-4xl lg:text-[5rem] tracking-widest font-bold mb-6 md:mb-10">
               The Reeva Life
@@ -57,7 +57,6 @@ const Motion = () => {
           </div>
         </div>
       </section>
-
       {/* Vertically Stacked Images with Text */}
       <div className="flex flex-col items-center">
         {cardData.map(({ imgSrc, altText, title, description }, index) => (
@@ -65,14 +64,18 @@ const Motion = () => {
             key={index}
             className="w-full"
           >
+            {/* Responsive Image */}
             <img
               src={imgSrc}
               alt={altText}
-              className="w-full h-[75vh] object-cover"
+              className="w-full h-[20vh] md:h-[75vh] object-cover"
             />
-            <div className="bg-gray-900 text-white py-8 px-4 md:px-16 text-center">
-              <h2 className="text-2xl md:text-4xl font-bold mb-4">{title}</h2>
-              <p className="text-sm md:text-lg max-w-4xl mx-auto leading-relaxed">
+            {/* Text Section */}
+            <div className="bg-gray-900 text-white py-6 px-4 md:py-8 md:px-16 text-center">
+              <h2 className="text-lg md:text-2xl lg:text-4xl font-bold mb-2 md:mb-4">
+                {title}
+              </h2>
+              <p className="text-sm md:text-base lg:text-lg max-w-4xl mx-auto leading-relaxed">
                 {description}
               </p>
             </div>

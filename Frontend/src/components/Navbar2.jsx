@@ -34,11 +34,11 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 w-[90%] sm:w-[70%] md:w-[57%] max-w-6xl text-[#EEEBDD] text-sm transition-transform duration-500 ${
+      className={`fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 w-[50%] sm:w-[80%] md:w-[57%] max-w-6xl text-[#EEEBDD] text-sm transition-transform duration-500 ${
         isVisible ? "translate-y-0" : "translate-y-24"
       }`}
     >
-      <div className="bg-black rounded-full shadow-lg py-2 px-4 md:px-8 flex items-center justify-between md:justify-start md:gap-36 backdrop-blur-lg">
+      <div className="bg-black rounded-full shadow-lg py-2 pl-2 px-6 sm:px-8 md:px-12 flex flex-wrap items-center justify-between">
         {/* Logo Section */}
         <a
           href="#home"
@@ -62,9 +62,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div
-            className={`md:hidden flex-col absolute bottom-full left-0 w-full bg-black rounded-lg shadow-lg py-4 px-8 z-40 mb-2`}
-          >
+          <div className="md:hidden flex-col absolute bottom-full left-0 w-full bg-black rounded-lg shadow-lg py-4 px-8 z-40 mb-2">
             <ul className="flex flex-col items-center uppercase font-medium space-y-4">
               {navLinks.map(({ href, label }) => (
                 <li key={href}>
@@ -82,8 +80,8 @@ const Navbar = () => {
         )}
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex flex-shrink-0 justify-end items-center space-x-8">
-          <ul className="flex flex-row items-center uppercase font-medium space-x-8">
+        <div className="hidden md:flex flex-wrap items-center justify-end flex-grow space-x-4">
+          <ul className="flex flex-wrap items-center uppercase font-medium space-x-6">
             {navLinks.map(({ href, label }) => (
               <li key={href}>
                 <a
