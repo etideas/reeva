@@ -42,16 +42,18 @@ const GalleryPage = () => {
         Gallery
       </h2>
       {/* React Image Gallery component */}
-      <Gallery
-        items={galleryImages}
-        showPlayButton={false} // Disable the play button (autoplay)
-        showFullscreenButton={false} // Disable the fullscreen button
-        showNav={false} // Disable the navigation (prev/next) controls
-        autoPlay={true} // Enable autoplay
-        slideDuration={800} // Optional: Set transition duration (default: 450ms)
-        slideInterval={4000} // Set interval between slides in autoplay (2 seconds)
-        thumbnailPosition="bottom" // Thumbnail position at the bottom
-      />
+      <div className="">
+        <Gallery
+          items={galleryImages}
+          showPlayButton={false} // Disable the play button (autoplay)
+          showFullscreenButton={false} // Disable the fullscreen button
+          showNav={false} // Disable the navigation (prev/next) controls
+          autoPlay={true} // Enable autoplay
+          slideDuration={800} // Optional: Set transition duration (default: 450ms)
+          slideInterval={4000} // Set interval between slides in autoplay (2 seconds)
+          thumbnailPosition="bottom" // Thumbnail position at the bottom
+        />
+      </div>
     </div>
   );
 };
