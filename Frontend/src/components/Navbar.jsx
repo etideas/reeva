@@ -6,12 +6,14 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   // Scroll behavior for showing/hiding the navbar
   useEffect(() => {
     const handleScroll = () => {
       setIsVisible(window.scrollY <= lastScrollY);
       setLastScrollY(window.scrollY);
+      setIsDropdownOpen(false);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -20,12 +22,15 @@ const Navbar = () => {
 
   // Navigation links
   const navLinks = [
-    { href: "/#home", label: "Home" },
+    { href: "/#media", label: "Media" },
+    { href: "/#contact", label: "Contact Us" },
+    { href: "/crewform", label: "CrewForm", external: true }, // Open in a new tab
+  ];
+
+  const contentDropdownLinks = [
     { href: "/#gallery", label: "Gallery" },
     { href: "/#youtube", label: "YouTube" },
-    { href: "/#contact", label: "Contact Us" },
-    { href: "/#media", label: "Media" },
-    { href: "/crewform", label: "CrewForm", external: true }, // Open in a new tab
+    { href: "/blog", label: "Blog" },
   ];
 
   // Close menu when a link is clicked
@@ -39,7 +44,7 @@ const Navbar = () => {
         isVisible ? "translate-y-0" : "translate-y-24"
       }`}
     >
-      <div className="bg-black rounded-full shadow-lg md:pl-2 py-2 px-6 sm:px-8 md:px-12 flex flex-wrap items-center justify-between">
+      <div className="bg-black bg-opacity-80 border-white border-2  rounded-full shadow-lg md:pl-2 py-2 px-6 sm:px-8 md:px-12 flex flex-wrap items-center justify-between">
         {/* Logo Section */}
         <HashLink
           to="/#home"
@@ -97,6 +102,29 @@ const Navbar = () => {
         {/* Desktop Navigation */}
         <div className="hidden md:flex flex-wrap items-center justify-end flex-grow space-x-4">
           <ul className="flex flex-wrap items-center uppercase font-medium space-x-6">
+            <li
+              className="relative"
+              onMouseEnter={() => setIsDropdownOpen(true)}
+              onMouseLeave={() => setIsDropdownOpen(false)}
+            >
+              <span className="text-[#EEEBDD] hover:text-[#9C2B2B] py-2 cursor-pointer">
+                Content
+              </span>
+              {isDropdownOpen && (
+                <div className="absolute bottom-[140%] left-0 bg-black text-[#EEEBDD] shadow-lg rounded-lg py-2 w-40">
+                  {contentDropdownLinks.map(({ href, label }) => (
+                    <HashLink
+                      key={href}
+                      to={href}
+                      smooth
+                      className="block px-4 py-2 hover:bg-[#752220] transition duration-300"
+                    >
+                      {label}
+                    </HashLink>
+                  ))}
+                </div>
+              )}
+            </li>
             {navLinks.map(({ href, label, external }) => (
               <li key={href}>
                 {external ? (
@@ -104,7 +132,7 @@ const Navbar = () => {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#EEEBDD] hover:text-[#AFD3E2] py-2 transition duration-300"
+                    className="text-[#EEEBDD] hover:text-[#9C2B2B] py-2 transition duration-300"
                   >
                     {label}
                   </a>
@@ -112,7 +140,7 @@ const Navbar = () => {
                   <HashLink
                     to={href}
                     smooth
-                    className="text-[#EEEBDD] hover:text-[#AFD3E2] py-2 transition duration-300"
+                    className="text-[#EEEBDD] hover:text-[#9C2B2B] py-2 transition duration-300"
                   >
                     {label}
                   </HashLink>

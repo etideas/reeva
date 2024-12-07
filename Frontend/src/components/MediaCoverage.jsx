@@ -35,7 +35,7 @@ const MediaCoverage = () => {
   return (
     <div
       id="media"
-      className="min-h-screen bg-gray-900 pt-12 p-8 text-white"
+      className="min-h-screen pt-12 p-8 text-white"
     >
       <div className="max-w-4xl mx-auto">
         <motion.h1

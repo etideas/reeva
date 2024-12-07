@@ -34,25 +34,27 @@ const GalleryPage = () => {
   return (
     <div
       id="gallery"
-      className="gallery-container px-4 pt-12 bg-gray-900"
+      className="gallery-container px-4 pt-12"
     >
-      {" "}
-      {/* Added padding to the X-axis */}
       <h2 className="text-center text-4xl md:text-5xl font-bold text-white mb-12">
         Gallery
       </h2>
-      {/* React Image Gallery component */}
-      <div className="">
-        <Gallery
-          items={galleryImages}
-          showPlayButton={false} // Disable the play button (autoplay)
-          showFullscreenButton={false} // Disable the fullscreen button
-          showNav={false} // Disable the navigation (prev/next) controls
-          autoPlay={true} // Enable autoplay
-          slideDuration={800} // Optional: Set transition duration (default: 450ms)
-          slideInterval={4000} // Set interval between slides in autoplay (2 seconds)
-          thumbnailPosition="bottom" // Thumbnail position at the bottom
-        />
+      {/* Centered and resized gallery */}
+      <div className="flex justify-center">
+        <div className="w-full max-w-2xl">
+          {" "}
+          {/* Restricts width and keeps the gallery centered */}
+          <Gallery
+            items={galleryImages}
+            showPlayButton={false} // Disable the play button (autoplay)
+            showFullscreenButton={false} // Disable the fullscreen button
+            showNav={true} // Enable navigation (prev/next) controls
+            autoPlay={true} // Enable autoplay
+            slideDuration={800} // Optional: Set transition duration (default: 450ms)
+            slideInterval={4000} // Set interval between slides in autoplay (2 seconds)
+            thumbnailPosition="bottom" // Thumbnail position at the bottom
+          />
+        </div>
       </div>
     </div>
   );

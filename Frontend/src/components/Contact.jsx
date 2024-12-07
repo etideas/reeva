@@ -14,17 +14,27 @@ const Contact = () => {
     message: "",
   });
   const [submissionStatus, setSubmissionStatus] = useState("");
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
+    setError(""); // Clear error when user types
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Basic validation
+    if (!formData.name || !formData.email || !formData.message) {
+      setError("All fields are required. Please fill out the form completely.");
+      return;
+    }
+
     try {
       await storeContactFormData(formData);
       setSubmissionStatus("Your message has been sent successfully!");
+      setError(""); // Clear any existing error
       setFormData({ name: "", email: "", message: "" }); // Clear the form
     } catch (error) {
       setSubmissionStatus("Failed to send your message. Please try again.");
@@ -34,7 +44,7 @@ const Contact = () => {
   return (
     <div
       id="contact"
-      className="flex w-full min-h-screen justify-center items-center relative px-4 sm:px-8 py-8 bg-gray-900"
+      className="flex w-full min-h-screen justify-center items-center relative px-4 sm:px-8 py-8 "
     >
       <div className="flex flex-col md:flex-row text-[#752220] w-full max-w-4xl p-6 sm:p-8 rounded-xl shadow-lg bg-[#F6F1F1] mt-8 sm:mt-[100px] relative z-10 space-y-6 md:space-y-0 md:space-x-6">
         <div className="flex flex-col space-y-6 justify-between md:w-1/2">
@@ -82,6 +92,10 @@ const Contact = () => {
             className="flex flex-col space-y-4"
             onSubmit={handleSubmit}
           >
+            {error && (
+              <p className="text-sm text-red-500 text-center">{error}</p>
+            )}
+
             <div>
               <label
                 htmlFor="name"
