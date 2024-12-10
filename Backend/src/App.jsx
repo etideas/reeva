@@ -14,47 +14,64 @@ import AddMedia from "./pages/AddMedia";
 import ShowContact from './pages/ShowContact'
 import ShowCrew from './pages/ShowCrew';
 import AddVideo from './pages/AddVideo';
-<<<<<<< HEAD
+import AddBlog from "./pages/AddBlog";
 
 
 
-=======
-import ShowVideo from './pages/ShowVideo';
-import ShowContact from "./pages/ShowContact";
-import ShowCrew from "./pages/ShowCrew";
->>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
 
 
 function App() {
   return (
     <div>
-       <NavBar/>
-   <Routes>
-  
-     <Route path="/login" element={<LoginPage />} />
-     <Route path="/register" element={<RegisterPage />} />
-     <Route path="/add/gallery" element={<AddGallery/>} />
-<<<<<<< HEAD
-     <Route path="/show/contact" element={<ShowContact/>} />
-=======
->>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
-    
-     <Route path="/add/media" element={<AddMedia/>} />
-     <Route path="/show/crew" element={<ShowCrew/>} />
-     <Route path="/add/video" element={<AddVideo/>} />
-<<<<<<< HEAD
-    
-          
-=======
-     <Route path="/show/video" element={<ShowVideo/>} />
-     <Route path="/show/contact" element={<ShowContact/>} />
-     <Route path="/show/crew" element={<ShowCrew/>} />
->>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
-   
-     
-   </Routes>
+      <NavBar />
+      <Routes>
 
-   </div>
+
+        <Route
+          path="/"
+          element={
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100vh", // Full height for vertical centering
+                backgroundColor: "#fdf4f4", // Optional background color
+              }}
+            >
+              <h1
+                style={{
+                  textAlign: "center",
+                  color: "#752220",
+                  fontFamily: "Arial, sans-serif",
+                  fontSize: "50px",
+                  fontWeight: "bold", // Increased font weight
+                }}
+              >
+                Welcome To Reeva 👋
+              </h1>
+            </div>
+          }
+        />
+
+
+
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/add/gallery" element={<AddGallery />} />
+        <Route path="/show/contact" element={<ShowContact />} />
+
+        <Route path="/add/media" element={<AddMedia />} />
+        <Route path="/show/crew" element={<ShowCrew />} />
+        <Route path="/add/video" element={<AddVideo />} />
+        <Route path="/add/blog" element={<AddBlog />} />
+
+
+
+
+      </Routes>
+
+    </div>
   );
 }
 
