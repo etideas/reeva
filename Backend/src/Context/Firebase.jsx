@@ -11,7 +11,10 @@ import {
 } from 'firebase/auth';
 import {getFirestore, collection, addDoc, getDocs, getDoc, deleteDoc, doc,  updateDoc} from 'firebase/firestore';
 import { getStorage, ref, uploadBytes ,getDownloadURL} from "firebase/storage";
+
 import { v4 as uuidv4 } from 'uuid';
+
+
 
 
 // Create a context for Firebase
@@ -260,7 +263,6 @@ const deleteVideo = async (id) => {
     throw error;  // Propagate error
   }
 };
-<<<<<<< HEAD
 
 const handleUpdateVideo = async (id, updatedData, newVideo) => {
   try {
@@ -289,8 +291,6 @@ const handleUpdateVideo = async (id, updatedData, newVideo) => {
 
 
 ////////////////////////////////////////////////////////CONTACT---------------------/////////////////
-=======
->>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
 //display all contacts
 const listAllContacts = () => {
   return getDocs(collection(firestore, 'contacts'));
@@ -310,6 +310,96 @@ const deleteCrew = async (id) => {
     throw error;  // Propagate error
   }
 };
+
+
+/////////////////////////////////////////BLOG---------------------/////////////////
+
+// add blogs
+const handleCreateNewBlog = async (title, description, covers) => {
+  try {
+    const imageURLs = [];
+    const storage = getStorage();
+
+    for (let cover of covers) {
+      const imageRef = ref(storage, `blogs/${Date.now()}-${cover.name}`);
+      const uploadResult = await uploadBytes(imageRef, cover);
+      const downloadURL = await getDownloadURL(uploadResult.ref);
+      imageURLs.push(downloadURL);
+    }
+
+    return await addDoc(collection(firestore, "blogs"), {
+      title,
+      description,
+      covers: imageURLs,
+      created: new Date(),
+    });
+  } catch (error) {
+    console.error("Error uploading images and saving blog:", error.message);
+    throw error;
+  }
+};
+
+
+
+//display all blogs
+const listAllBlog = () => {
+  return getDocs(collection(firestore, 'blogs'));
+};
+//delte blog
+const deleteBlog = async (id) => {
+  try {
+    const blogRef = doc(firestore, 'blogs', id);  // Get reference to the blog document by ID
+    await deleteDoc(blogRef);  // Delete the blog document from Firestore
+    console.log("Blog deleted successfully");
+  } catch (error) {
+    console.error("Error deleting blog:", error.message);
+    throw error;  // Propagate error
+  }
+};
+//edit blog
+
+// update blog
+const updateBlog = async (id, updatedData) => {
+  try {
+    const blogRef = doc(firestore, 'blogs', id);
+    await updateDoc(blogRef, updatedData);
+    console.log('Blog updated successfully');
+    return { id, ...updatedData }; // Return updated blog data
+  } catch (error) {
+    console.error('Error updating blog:', error.message);
+    throw error;
+  }
+};
+
+// Handle image upload and get URLs
+const handleImageUpload = async (files) => {
+  const storage = getStorage();
+  const uploadedImageURLs = [];
+
+  for (let file of files) {
+    const uniqueName = `${Date.now()}-${file.name}`;
+    const fileRef = ref(storage, `blogs/${uniqueName}`);
+
+    try {
+      const uploadResult = await uploadBytes(fileRef, file);
+      const downloadURL = await getDownloadURL(uploadResult.ref);
+      uploadedImageURLs.push(downloadURL);
+      console.log(`Uploaded image URL: ${downloadURL}`);
+    } catch (error) {
+      console.error('Error uploading image:', error.message);
+      alert('Failed to upload image. Please try again.');
+      return [];
+    }
+  }
+  return uploadedImageURLs;
+};
+
+
+
+
+
+
+
 
 
   const isLoggedIn = user ? true : false;
@@ -334,17 +424,20 @@ const deleteCrew = async (id) => {
       deleteVideo,
       listAllContacts,
       listAllCrew,
-<<<<<<< HEAD
       deleteCrew,
 
      handleUpdateItem,
      handleUpdateItemMedia,
      listAllGalleryMedia,
 
+     handleCreateNewBlog,
+     listAllBlog,
+     deleteBlog,
+     updateBlog,
+     handleImageUpload,
+   
 
-=======
-      deleteCrew
->>>>>>> 5735fd3316db51ef7beecbac3f538beca84cb941
+
      
    
     }}>
@@ -352,3 +445,4 @@ const deleteCrew = async (id) => {
     </FirebaseContext.Provider>
   );
 };
+export { firestore, storage };
