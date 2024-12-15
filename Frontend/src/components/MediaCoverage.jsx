@@ -35,11 +35,11 @@ const MediaCoverage = () => {
   return (
     <div
       id="media"
-      className="min-h-screen bg-[#F6F1F1] pt-44 p-8"
+      className="min-h-screen pt-12 p-8 text-white"
     >
       <div className="max-w-4xl mx-auto">
         <motion.h1
-          className="text-4xl font-bold text-center text-[#752220] mb-8"
+          className="text-4xl font-bold text-center  mb-8"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}

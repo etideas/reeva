@@ -66,6 +66,11 @@ export const FirebaseProvider = (props) => {
     }
   };
 
+  // Function to list all Blogs items
+  const listAllBlogs = () => {
+    return getDocs(collection(firestore, "blogs"));
+  };
+
   return (
     <FirebaseContext.Provider
       value={{
@@ -74,6 +79,7 @@ export const FirebaseProvider = (props) => {
         listAllVideos,
         storeCrewFormData,
         storeContactFormData,
+        listAllBlogs,
       }}
     >
       {props.children}
