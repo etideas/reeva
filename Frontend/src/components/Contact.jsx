@@ -46,7 +46,7 @@ const Contact = () => {
       id="contact"
       className="flex w-full min-h-screen justify-center items-center relative px-4 sm:px-8 py-8 "
     >
-      <div className="flex flex-col md:flex-row text-[#752220] w-full max-w-4xl p-6 sm:p-8 rounded-xl shadow-lg bg-[#F6F1F1] mt-8 sm:mt-[100px] relative z-10 space-y-6 md:space-y-0 md:space-x-6">
+      <div className="flex flex-col md:flex-row text-[#752220] w-full max-w-4xl p-6 sm:p-8 rounded-xl shadow-lg bg-[#F6F1F1] sm:mt-[100px] relative z-10 space-y-6 md:space-y-0 md:space-x-6">
         <div className="flex flex-col space-y-6 justify-between md:w-1/2">
           {/* Contact Details Section */}
           <div>

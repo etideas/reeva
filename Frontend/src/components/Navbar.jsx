@@ -27,6 +27,15 @@ const Navbar = () => {
     { href: "/crewform", label: "CrewForm", external: true }, // Open in a new tab
   ];
 
+  const mobNavLinks = [
+    { href: "/#gallery", label: "Gallery" },
+    { href: "/#youtube", label: "YouTube" },
+    { href: "/#media", label: "Media" },
+    { href: "/blog", label: "Blog" },
+    { href: "/#contact", label: "Contact Us" },
+    { href: "/crewform", label: "CrewForm", external: true },
+  ];
+
   const contentDropdownLinks = [
     { href: "/#gallery", label: "Gallery" },
     { href: "/#youtube", label: "YouTube" },
@@ -44,7 +53,7 @@ const Navbar = () => {
         isVisible ? "translate-y-0" : "translate-y-24"
       }`}
     >
-      <div className="bg-black bg-opacity-80 border-white border-2  rounded-full shadow-lg md:pl-2 py-2 px-6 sm:px-8 md:px-12 flex flex-wrap items-center justify-between">
+      <div className="bg-black bg-opacity-80 border-white border-2  rounded-full shadow-lg md:pl-2 py-2 pr-6 sm:px-8 md:px-12 flex flex-wrap items-center justify-between">
         {/* Logo Section */}
         <HashLink
           to="/#home"
@@ -71,7 +80,7 @@ const Navbar = () => {
         {isOpen && (
           <div className="md:hidden flex-col absolute bottom-full left-0 w-full bg-black rounded-lg shadow-lg py-4 px-8 z-40 mb-2">
             <ul className="flex flex-col items-center uppercase font-medium space-y-4">
-              {navLinks.map(({ href, label, external }) => (
+              {mobNavLinks.map(({ href, label, external }) => (
                 <li key={href}>
                   {external ? (
                     <a

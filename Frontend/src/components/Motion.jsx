@@ -45,7 +45,7 @@ const Motion = () => {
         </div>
       </section>
 
-      <div className="bg-[url('./assets/bg5.gif')] bg-no-repeat bg-cover">
+      <div className="bg-[url('./assets/bg5.gif')] bg-no-repeat bg-cover px-10">
         {/* "The Reeva Life" Section with Animation */}
         <div className="text-white py-44  text-center ">
           <div>

@@ -35,18 +35,24 @@ const MediaCoverage = () => {
   return (
     <div
       id="media"
-      className="min-h-screen pt-12 p-8 text-white"
+      className="min-h-screen pt-12 p-8"
     >
       <div className="max-w-4xl mx-auto">
         <motion.h1
-          className="text-4xl font-bold text-center  mb-8"
+          className="text-4xl font-bold text-center  mb-8 text-white"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
           Latest News & Stories
         </motion.h1>
-        <div className="space-y-8">
+        <div
+          className="space-y-8 max-h-[70vh] overflow-y-auto"
+          style={{
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+          }}
+        >
           {newsArticles.map((article, index) => (
             <motion.div
               key={article.id}
@@ -65,14 +71,12 @@ const MediaCoverage = () => {
                   transition={{ duration: 0.5 }}
                 />
               </div>
-              <div className="md:w-2/3 md:pl-6 mt-4 md:mt-0">
-                <h2 className="text-2xl font-semibold text-[#752220]">
-                  {article.title}
-                </h2>
-                <p className="text-sm text-[#752220]">
+              <div className="md:w-2/3 md:pl-6 mt-4 md:mt-0 text-[#752220]">
+                <h2 className="text-2xl font-semibold ">{article.title}</h2>
+                <p className="text-sm ">
                   {article.date} {/* Display the date string directly */}
                 </p>
-                <p className="mt-4 text-[#752220]">{article.summary}</p>
+                <p className="mt-4 ">{article.summary}</p>
               </div>
             </motion.div>
           ))}
