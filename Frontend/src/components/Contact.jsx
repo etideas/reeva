@@ -14,17 +14,27 @@ const Contact = () => {
     message: "",
   });
   const [submissionStatus, setSubmissionStatus] = useState("");
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
+    setError(""); // Clear error when user types
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Basic validation
+    if (!formData.name || !formData.email || !formData.message) {
+      setError("All fields are required. Please fill out the form completely.");
+      return;
+    }
+
     try {
       await storeContactFormData(formData);
       setSubmissionStatus("Your message has been sent successfully!");
+      setError(""); // Clear any existing error
       setFormData({ name: "", email: "", message: "" }); // Clear the form
     } catch (error) {
       setSubmissionStatus("Failed to send your message. Please try again.");
@@ -34,44 +44,44 @@ const Contact = () => {
   return (
     <div
       id="contact"
-      className="flex w-full min-h-screen justify-center items-center relative px-4 sm:px-8 py-8"
+      className="flex w-full min-h-screen justify-center items-center relative px-4 sm:px-8 py-8 "
     >
-      <div className="flex flex-col md:flex-row bg-[#752220] w-full max-w-4xl p-6 sm:p-8 rounded-xl shadow-lg text-[#F6F1F1] mt-8 sm:mt-[100px] relative z-10 space-y-6 md:space-y-0 md:space-x-6">
+      <div className="flex flex-col md:flex-row text-[#752220] w-full max-w-4xl p-6 sm:p-8 rounded-xl shadow-lg bg-[#F6F1F1] sm:mt-[100px] relative z-10 space-y-6 md:space-y-0 md:space-x-6">
         <div className="flex flex-col space-y-6 justify-between md:w-1/2">
           {/* Contact Details Section */}
           <div>
-            <h1 className="font-bold text-3xl md:text-4xl tracking-wide text-[#F6F1F1]">
+            <h1 className="font-bold text-3xl md:text-4xl tracking-wide text-[#752220]">
               Contact Us
             </h1>
           </div>
-          <div className="text-[#F6F1F1] pt-2 text-sm md:text-base">
+          <div className="text-[#752220] pt-2 text-sm md:text-base">
             Lorem ipsum dolor sit amet consectetur, molestias, nesciunt
             laudantium eius quidem totam explicabo id culpa harum.
           </div>
           <div className="flex flex-col space-y-4">
             <div className="inline-flex items-center space-x-2">
-              <ImEnvelop className="text-[#F6F1F1] text-lg md:text-xl" />
-              <span className="text-[#F6F1F1]">abc@gmail.com</span>
+              <ImEnvelop className="text-[#752220] text-lg md:text-xl" />
+              <span className="text-[#752220]">abc@gmail.com</span>
             </div>
             <div className="inline-flex items-center space-x-2">
-              <IoLocation className="text-[#F6F1F1] text-lg md:text-xl" />
-              <span className="text-[#F6F1F1]">Floating Away</span>
+              <IoLocation className="text-[#752220] text-lg md:text-xl" />
+              <span className="text-[#752220]">Floating Away</span>
             </div>
           </div>
 
           {/* Social Media Links */}
           <div className="flex space-x-4 pt-4">
             <a href="#">
-              <FaFacebookSquare className="text-2xl text-[#AFD3E2] hover:text-[#F6F1F1] transition duration-200" />
+              <FaFacebookSquare className="text-2xl text-[#AFD3E2] hover:text-[#752220] transition duration-200" />
             </a>
             <a href="#">
-              <FaXTwitter className="text-2xl text-[#AFD3E2] hover:text-[#F6F1F1] transition duration-200" />
+              <FaXTwitter className="text-2xl text-[#AFD3E2] hover:text-[#752220] transition duration-200" />
             </a>
             <a href="#">
-              <CiYoutube className="text-2xl text-[#AFD3E2] hover:text-[#F6F1F1] transition duration-200" />
+              <CiYoutube className="text-2xl text-[#AFD3E2] hover:text-[#752220] transition duration-200" />
             </a>
             <a href="#">
-              <FaInstagramSquare className="text-2xl text-[#AFD3E2] hover:text-[#F6F1F1] transition duration-200" />
+              <FaInstagramSquare className="text-2xl text-[#AFD3E2] hover:text-[#752220] transition duration-200" />
             </a>
           </div>
         </div>
@@ -82,6 +92,10 @@ const Contact = () => {
             className="flex flex-col space-y-4"
             onSubmit={handleSubmit}
           >
+            {error && (
+              <p className="text-sm text-red-500 text-center">{error}</p>
+            )}
+
             <div>
               <label
                 htmlFor="name"
