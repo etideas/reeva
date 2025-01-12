@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useFirebase } from "../context/Firebase";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules"; // Import the Navigation module
 import "swiper/css";
-import "swiper/css/navigation";
 
 const YouTube = () => {
   const [videos, setVideos] = useState([]);
@@ -39,84 +37,72 @@ const YouTube = () => {
   return (
     <div
       id="youtube"
-      className="min-h-screen px-8 py-16 pt-20 text-white "
+      className="min-h-screen px-8 py-16 pt-20 text-white flex flex-col md:flex-row gap-20"
     >
       {/* Latest Videos Section */}
-      <section className="mb-10">
+      <section className="md:w-9/10 w-full mb-10 md:mb-0 pr-4">
         <h2 className="text-4xl font-bold text-center text-white inline-block pb-2 mb-4">
           Our Latest
         </h2>
-        <div className="px-40 flex justify-center items-center">
+        <div className="flex justify-center items-center">
           {videos.slice(0, 1).map((video, index) => (
-            // <div
-            //   key={video.id}
-            //   className="w-[80%] bg-[#F6F1F1] rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
-            // >
             <iframe
               key={video.id}
-              width="80%"
+              width="100%"
               height="450"
               src={video.videoURL || ""}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               title={video.title || `Latest Video ${index + 1}`}
-              className="rounded-t-lg"
+              className="rounded-lg"
             ></iframe>
-            // </div>
           ))}
         </div>
       </section>
 
-      {/* Other Videos Section with Carousel */}
-      <section>
-        <h2 className="text-xl font-bold text-center inline-block pb-2 mb-2">
+      {/* Other Videos Section */}
+      <section className="md:w-[30%] flex flex-col">
+        <h2 className="text-xl font-bold text-center inline-block pb-2 mb-4">
           Other Videos
         </h2>
-        <Swiper
-          modules={[Navigation]} // Add Navigation module
-          navigation={true} // Enable navigation buttons
-          spaceBetween={10}
-          slidesPerView="auto"
-          centeredSlides={true}
-          loop={true}
-          pagination={{
-            clickable: true,
+        <div
+          className="overflow-hidden overflow-y-scroll scrollbar-hide "
+          style={{
+            maxHeight: "55vh", // On mobile, limit height for scrolling
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
           }}
-          breakpoints={{
-            640: {
-              slidesPerView: 1,
-            },
-            768: {
-              slidesPerView: 2,
-            },
-            1024: {
-              slidesPerView: 5,
-            },
-          }}
-          className="mySwiper"
         >
-          {videos.slice(2).map((video, index) => (
-            <SwiperSlide key={video.id}>
-              <div className="w-[`100%] bg-[#F6F1F1] rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                <iframe
-                  width="300"
-                  height="150"
-                  src={video.videoURL || ""}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  title={video.title || `Other Video ${index + 1}`}
-                  className="rounded-t-lg"
-                ></iframe>
-                <div className="p-2 bg-[#F6F1F1]">
-                  <h3 className="text-sm font-bold text-[#752220]">
-                    {video.title || `Video ${index + 3}`}
-                  </h3>
+          <Swiper
+            direction="vertical"
+            spaceBetween={10}
+            slidesPerView="auto"
+            loop={true}
+            className=""
+          >
+            {videos.slice(1).map((video, index) => (
+              <SwiperSlide key={video.id}>
+                <div className=" rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                  <iframe
+                    width=""
+                    height=""
+                    src={video.videoURL || ""}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    title={video.title || `Other Video ${index + 1}`}
+                    className="rounded-t-lg"
+                  ></iframe>
+                  {/* <div className="p-2 bg-[#F6F1F1]">
+                    <h3 className="text-sm font-bold text-[#752220]">
+                      {video.title || `Video ${index + 2}`}
+                    </h3>
+                  </div> */}
                 </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </section>
     </div>
   );

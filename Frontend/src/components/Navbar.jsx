@@ -34,12 +34,20 @@ const Navbar = () => {
     { href: "/blog", label: "Blog" },
     { href: "/#contact", label: "Contact Us" },
     { href: "/crewform", label: "CrewForm", external: true },
+<<<<<<< HEAD
+=======
+    { href: "/tips", label: "Tips" },
+>>>>>>> cbce64c2deeed1bf66f0ddb2be82336b76abda68
   ];
 
   const contentDropdownLinks = [
     { href: "/#gallery", label: "Gallery" },
     { href: "/#youtube", label: "YouTube" },
     { href: "/blog", label: "Blog" },
+<<<<<<< HEAD
+=======
+    { href: "/tips", label: "Tips" },
+>>>>>>> cbce64c2deeed1bf66f0ddb2be82336b76abda68
   ];
 
   // Close menu when a link is clicked

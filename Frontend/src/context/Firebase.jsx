@@ -7,6 +7,7 @@ const FirebaseContext = createContext(null);
 
 // Firebase configuration object
 const firebaseConfig = {
+<<<<<<< HEAD
   apiKey: "AIzaSyAWMcVxRYc9QwYhBNaYQfaI3cwi_eFeLfA",
   authDomain: "reevaadmin-781c5.firebaseapp.com",
   projectId: "reevaadmin-781c5",
@@ -14,6 +15,9 @@ const firebaseConfig = {
   messagingSenderId: "682620285467",
   appId: "1:682620285467:web:da0d7e8eb2482ace727ebe",
   measurementId: "G-RJSM3S7H2J",
+=======
+ 
+>>>>>>> cbce64c2deeed1bf66f0ddb2be82336b76abda68
 };
 
 // Initialize Firebase
@@ -71,6 +75,10 @@ export const FirebaseProvider = (props) => {
     return getDocs(collection(firestore, "blogs"));
   };
 
+  // Function to list all video items
+  const listAllTips = () => {
+    return getDocs(collection(firestore, "tipsAndTricks"));
+  };
   return (
     <FirebaseContext.Provider
       value={{
@@ -80,6 +88,10 @@ export const FirebaseProvider = (props) => {
         storeCrewFormData,
         storeContactFormData,
         listAllBlogs,
+<<<<<<< HEAD
+=======
+        listAllTips,
+>>>>>>> cbce64c2deeed1bf66f0ddb2be82336b76abda68
       }}
     >
       {props.children}
