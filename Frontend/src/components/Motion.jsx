@@ -55,14 +55,16 @@ const Motion = () => {
           {cardData.map(({ imgSrc, altText, title, description }, index) => (
             <motion.section
               key={index}
-              className={`flex flex-col ${
-                index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-              } items-center justify-between w-full gap-10 py-10`}
+              className={`flex flex-col ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                } items-center justify-between w-full gap-10 py-10`}
             >
               <motion.img
                 src={imgSrc}
                 alt={altText}
-                className="w-[783px] md:w-2/2 h-[450px] object-cover rounded-lg shadow-lg border-t-[13px] border-b-[30px] border-r-[13px] border-blue-200"
+                className={`w-[783px] md:w-2/2 h-[450px] object-cover rounded-lg shadow-lg ${index === 1
+                    ? "border-t-[20px] border-b-[40px] border-l-[20px] border-blue-200" // Custom border for the second image
+                    : "border-t-[13px] border-b-[30px] border-r-[13px] border-blue-200" // Default border for others
+                  }`}
                 {...motionSettings}
               />
               <motion.div

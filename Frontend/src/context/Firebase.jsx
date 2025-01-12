@@ -7,13 +7,7 @@ const FirebaseContext = createContext(null);
 
 // Firebase configuration object
 const firebaseConfig = {
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: "",
-  measurementId: "",
+ 
 };
 
 // Initialize Firebase
