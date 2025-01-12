@@ -1,37 +1,71 @@
 import React from "react";
+<<<<<<< HEAD
 import { motion } from "framer-motion"; // Import framer-motion
 import img1 from "../assets/img/img1.jpg"; // Existing image import
 import homeVideo from "../assets/HomeVid.mov"; // Import the local video file
 
 const Motion = () => {
   // Image and text data array
+=======
+import { motion } from "framer-motion";
+import img1 from "../assets/img/img1.jpg";
+import homeVideo from "../assets/HomeVid.mov";
+
+const motionSettings = {
+  initial: { opacity: 0, x: -100 },
+  whileInView: { opacity: 1, x: 0, transition: { duration: 1.5, ease: "easeOut" } },
+  viewport: { once: true, amount: 0.4 },
+};
+
+const Motion = () => {
+>>>>>>> cbce64c2deeed1bf66f0ddb2be82336b76abda68
   const cardData = [
     {
       imgSrc: "/images/PHOTO 2-1.jpg",
       altText: "Special Private Tour",
+<<<<<<< HEAD
       // title: "Special Private Tour",
       // description:
       //   "In the last few centuries, residents of our subcontinent have ignored the seas. A fertile landscape and an abundance of natural resources domesticated us to an extent that we lost the urge to explore, to look beyond the shores. It’s time we changed that. It's time to take a leap of faith.",
+=======
+      title: "The Reeva Life",
+      description: `In 2022, we—Gaurav, Vaidehi, and Kaeya—left the traditional
+              lifestyle behind and embraced a life at sea on a 42-foot sailboat.
+              Believing in adventurous living, we sold everything we owned to
+              travel the world, experiencing the beauty and challenges of life
+              on the ocean`,
+>>>>>>> cbce64c2deeed1bf66f0ddb2be82336b76abda68
     },
     {
       imgSrc: "/images/PHOTO 3.PNG",
       altText: "Customized Group Hiking",
       title: "Customized Group Hiking",
+<<<<<<< HEAD
       description:
         "While we go along, we intend to contribute by spreading awareness. Just sharing ideas about little changes in our lifestyle that can go a long way in making this world a better place.",
+=======
+      description: "While we go along, we intend to contribute by spreading awareness. Just sharing ideas about little changes in our lifestyle that can go a long way in making this world a better place.",
+>>>>>>> cbce64c2deeed1bf66f0ddb2be82336b76abda68
     },
     {
       imgSrc: img1,
       altText: "Reeva Family",
       title: "Reeva Family",
+<<<<<<< HEAD
       description:
         "This life at sea offers us freedom, simplicity, and a daily dose of adventure as we navigate challenges, while discovering offbeat destinations.",
+=======
+      description: "This life at sea offers us freedom, simplicity, and a daily dose of adventure as we navigate challenges, while discovering offbeat destinations.",
+>>>>>>> cbce64c2deeed1bf66f0ddb2be82336b76abda68
     },
   ];
 
   return (
     <div id="home">
+<<<<<<< HEAD
       {/* Video Section */}
+=======
+>>>>>>> cbce64c2deeed1bf66f0ddb2be82336b76abda68
       <section className="relative h-screen bg-fixed m-0 p-0 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
           <video
@@ -46,6 +80,7 @@ const Motion = () => {
       </section>
 
       <div className="bg-[url('./assets/bg5.gif')] bg-no-repeat bg-cover px-10">
+<<<<<<< HEAD
         {/* "The Reeva Life" Section with Animation */}
         <div className="text-white py-44  text-center ">
           <div>
@@ -135,6 +170,40 @@ const Motion = () => {
             </motion.section>
           ))}
         </div>
+=======
+        <div className="flex flex-col items-center pt-11">
+          {cardData.map(({ imgSrc, altText, title, description }, index) => (
+            <motion.section
+              key={index}
+              className={`flex flex-col ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                } items-center justify-between w-full gap-10 py-10`}
+            >
+              <motion.img
+                src={imgSrc}
+                alt={altText}
+                className={`w-[783px] md:w-2/2 h-[450px] object-cover rounded-lg shadow-lg ${index === 1
+                    ? "border-t-[20px] border-b-[40px] border-l-[20px] border-blue-200" // Custom border for the second image
+                    : "border-t-[13px] border-b-[30px] border-r-[13px] border-blue-200" // Default border for others
+                  }`}
+                {...motionSettings}
+              />
+              <motion.div
+                className="text-white md:w-1/2 px-6 text-center"
+                {...motionSettings}
+              >
+                {title && (
+                  <h2 className="text-sm md:text-2xl lg:text-3xl font-bold mb-4">
+                    {title}
+                  </h2>
+                )}
+                <p className="text-sm md:text-base lg:text-lg leading-relaxed">
+                  {description}
+                </p>
+              </motion.div>
+            </motion.section>
+          ))}
+        </div>
+>>>>>>> cbce64c2deeed1bf66f0ddb2be82336b76abda68
       </div>
     </div>
   );

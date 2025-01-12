@@ -34,12 +34,14 @@ const Navbar = () => {
     { href: "/blog", label: "Blog" },
     { href: "/#contact", label: "Contact Us" },
     { href: "/crewform", label: "CrewForm", external: true },
+    { href: "/tips", label: "Tips" },
   ];
 
   const contentDropdownLinks = [
     { href: "/#gallery", label: "Gallery" },
     { href: "/#youtube", label: "YouTube" },
     { href: "/blog", label: "Blog" },
+    { href: "/tips", label: "Tips" },
   ];
 
   // Close menu when a link is clicked

@@ -7,6 +7,10 @@ import MediaCoverage from "./components/MediaCoverage";
 import YouTube from "./components/Youtube";
 import CrewForm from "./components/CrewForm";
 import BlogPage from "./components/BlogPage";
+<<<<<<< HEAD
+=======
+import TipsTricks from "./components/TipsTricks";
+>>>>>>> cbce64c2deeed1bf66f0ddb2be82336b76abda68
 
 function App() {
   return (
@@ -44,6 +48,13 @@ function App() {
             path="/blog"
             element={<BlogPage />}
           />
+<<<<<<< HEAD
+=======
+          <Route
+            path="/tips"
+            element={<TipsTricks />}
+          />
+>>>>>>> cbce64c2deeed1bf66f0ddb2be82336b76abda68
         </Routes>
       </div>
     </Router>
