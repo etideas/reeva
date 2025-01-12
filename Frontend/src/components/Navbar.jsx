@@ -1,24 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { HashLink } from "react-router-hash-link";
 import logo from "../assets/logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  // Scroll behavior for showing/hiding the navbar
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsVisible(window.scrollY <= lastScrollY);
-      setLastScrollY(window.scrollY);
-      setIsDropdownOpen(false);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
 
   // Navigation links
   const navLinks = [
@@ -50,12 +36,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav
-      className={`fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 w-[50%] sm:w-[80%] md:w-[57%] max-w-6xl text-[#EEEBDD] text-sm transition-transform duration-500 ${
-        isVisible ? "translate-y-0" : "translate-y-24"
-      }`}
-    >
-      <div className="bg-black bg-opacity-80 border-white border-2  rounded-full shadow-lg md:pl-2 py-2 pr-6 sm:px-8 md:px-12 flex flex-wrap items-center justify-between">
+    <nav className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 w-[50%] sm:w-[80%] md:w-[57%] max-w-6xl text-[#EEEBDD] text-sm">
+      <div className="bg-black bg-opacity-80 border-white border-2 rounded-full shadow-lg md:pl-2 py-2 pr-6 sm:px-8 md:px-12 flex flex-wrap items-center justify-between">
         {/* Logo Section */}
         <HashLink
           to="/#home"

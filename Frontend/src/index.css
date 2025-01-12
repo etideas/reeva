@@ -13,3 +13,29 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Custom scrollbar for the "Other Videos" section */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2); /* Semi-transparent scrollbar track */
+  border-radius: 10px; /* Rounded edges */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: black; /* Black scrollbar thumb */
+  border-radius: 10px; /* Rounded edges */
+  opacity: 0.8; /* Slightly transparent thumb */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: black; /* Black thumb on hover */
+  opacity: 1; /* Fully opaque on hover */
+}
+
+/* For Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin; /* Thin scrollbar */
+  scrollbar-color: black rgba(0, 0, 0, 0.2); /* Black thumb with semi-transparent track */
+}

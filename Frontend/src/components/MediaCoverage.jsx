@@ -47,7 +47,7 @@ const MediaCoverage = () => {
           Latest News & Stories
         </motion.h1>
         <div
-          className="space-y-8 max-h-[70vh] overflow-y-auto"
+          className="space-y-8 max-h-[76vh] overflow-y-auto"
           style={{
             scrollbarWidth: "none",
             msOverflowStyle: "none",

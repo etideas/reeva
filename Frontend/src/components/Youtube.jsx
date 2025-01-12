@@ -44,12 +44,12 @@ const YouTube = () => {
         <h2 className="text-4xl font-bold text-center text-white inline-block pb-2 mb-4">
           Our Latest
         </h2>
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center bg-white p-4 rounded-lg">
           {videos.slice(0, 1).map((video, index) => (
             <iframe
               key={video.id}
               width="100%"
-              height="450"
+              height="600"
               src={video.videoURL || ""}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -63,15 +63,13 @@ const YouTube = () => {
 
       {/* Other Videos Section */}
       <section className="md:w-[30%] flex flex-col">
-        <h2 className="text-xl font-bold text-center inline-block pb-2 mb-4">
+        <h2 className="text-2xl font-bold text-center inline-block pb-2 mb-6">
           Other Videos
         </h2>
         <div
-          className="overflow-hidden overflow-y-scroll scrollbar-hide "
+          className="overflow-hidden overflow-y-scroll custom-scrollbar"
           style={{
-            maxHeight: "55vh", // On mobile, limit height for scrolling
-            scrollbarWidth: "none",
-            msOverflowStyle: "none",
+            maxHeight: "76vh", // On mobile, limit height for scrolling
           }}
         >
           <Swiper
@@ -83,7 +81,7 @@ const YouTube = () => {
           >
             {videos.slice(1).map((video, index) => (
               <SwiperSlide key={video.id}>
-                <div className=" rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div className="bg-white p-2 rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
                   <iframe
                     width=""
                     height=""
@@ -93,11 +91,6 @@ const YouTube = () => {
                     title={video.title || `Other Video ${index + 1}`}
                     className="rounded-t-lg"
                   ></iframe>
-                  {/* <div className="p-2 bg-[#F6F1F1]">
-                    <h3 className="text-sm font-bold text-[#752220]">
-                      {video.title || `Video ${index + 2}`}
-                    </h3>
-                  </div> */}
                 </div>
               </SwiperSlide>
             ))}
