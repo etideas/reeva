@@ -37,59 +37,52 @@ const YouTube = () => {
   return (
     <div
       id="youtube"
-      className="min-h-screen px-8 py-16 pt-20 text-white flex flex-col md:flex-row gap-20"
+      className="min-h-screen px-4 py-8 text-white flex  flex-col gap-12 md:flex-row md:gap-32"
     >
       {/* Latest Videos Section */}
-      <section className="md:w-9/10 w-full mb-10 md:mb-0 pr-4">
-        <h2 className="text-4xl font-bold text-center text-white inline-block pb-2 mb-4">
+      <section className="w-full md:w-[70%]">
+        <h2 className="text-2xl md:text-4xl font-bold md:text-left text-center mb-6">
           Our Latest
         </h2>
         <div className="flex justify-center items-center bg-white p-4 rounded-lg">
-          {videos.slice(0, 1).map((video, index) => (
+          {videos.slice(0, 1).map((video) => (
             <iframe
               key={video.id}
-              width="100%"
-              height="600"
+              className="rounded-lg w-full aspect-video"
               src={video.videoURL || ""}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-              title={video.title || `Latest Video ${index + 1}`}
-              className="rounded-lg"
+              title={video.title || "Latest Video"}
             ></iframe>
           ))}
         </div>
       </section>
 
       {/* Other Videos Section */}
-      <section className="md:w-[30%] flex flex-col">
-        <h2 className="text-2xl font-bold text-center inline-block pb-2 mb-6">
+      <section className="sm:w-full md:w-auto">
+        <h2 className="text-2xl md:text-4xl font-bold text-center mb-6">
           Other Videos
         </h2>
         <div
           className="overflow-hidden overflow-y-scroll custom-scrollbar"
-          style={{
-            maxHeight: "76vh", // On mobile, limit height for scrolling
-          }}
+          style={{ maxHeight: "72vh" }}
         >
           <Swiper
             direction="vertical"
             spaceBetween={10}
             slidesPerView="auto"
-            loop={true}
-            className=""
+            loop={false}
           >
-            {videos.slice(1).map((video, index) => (
+            {videos.slice(1).map((video) => (
               <SwiperSlide key={video.id}>
-                <div className="bg-white p-2 rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div className="bg-white w-[300px] p-2 rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
                   <iframe
-                    width=""
-                    height=""
+                    className="rounded-t-lg w-full aspect-video"
                     src={video.videoURL || ""}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
-                    title={video.title || `Other Video ${index + 1}`}
-                    className="rounded-t-lg"
+                    title={video.title || "Other Video"}
                   ></iframe>
                 </div>
               </SwiperSlide>

@@ -44,13 +44,13 @@ const Contact = () => {
   return (
     <div
       id="contact"
-      className="flex w-full min-h-screen justify-center items-center relative px-4 sm:px-8 py-8 "
+      className="flex w-full min-h-screen justify-center items-center relative px-4 sm:px-16 py-12"
     >
-      <div className="flex flex-col md:flex-row text-[#752220] w-full max-w-4xl p-6 sm:p-8 rounded-xl shadow-lg bg-[#F6F1F1] sm:mt-[100px] relative z-10 space-y-6 md:space-y-0 md:space-x-6">
-        <div className="flex flex-col space-y-6 justify-between md:w-1/2">
-          {/* Contact Details Section */}
+      <div className="flex flex-col gap-72 md:flex-row text-[#752220] w-full max-w-8xl p-6 sm:p-10 rounded-xl shadow-lg bg-[#F6F1F1] sm:mt-[100px] relative z-10 space-y-8 md:space-y-0 md:space-x-8">
+        {/* Contact Details Section */}
+        <div className="flex flex-col space-y-6 justify-between md:w-5/12">
           <div>
-            <h1 className="font-bold text-3xl md:text-4xl tracking-wide text-[#752220]">
+            <h1 className="font-bold text-4xl tracking-wide text-[#752220]">
               Contact Us
             </h1>
           </div>
@@ -68,7 +68,6 @@ const Contact = () => {
               <span className="text-[#752220]">Floating Away</span>
             </div>
           </div>
-
           {/* Social Media Links */}
           <div className="flex space-x-4 pt-4">
             <a href="#">
@@ -85,17 +84,15 @@ const Contact = () => {
             </a>
           </div>
         </div>
-
         {/* Form Section */}
-        <div className="bg-[#F6F1F1] shadow-lg rounded-xl p-6 sm:p-8 text-[#752220] md:w-1/2">
+        <div className="bg-[#F6F1F1] shadow-lg rounded-xl p-6 sm:p-8 text-[#752220] md:w-7/12">
           <form
-            className="flex flex-col space-y-4"
+            className="flex flex-col space-y-6"
             onSubmit={handleSubmit}
           >
             {error && (
               <p className="text-sm text-red-500 text-center">{error}</p>
             )}
-
             <div>
               <label
                 htmlFor="name"
@@ -112,7 +109,6 @@ const Contact = () => {
                 className="ring ring-1 ring-[#752220] w-full rounded-md px-4 py-2 outline-none focus:ring-2 focus:ring-[#752220] mt-2"
               />
             </div>
-
             <div>
               <label
                 htmlFor="email"
@@ -129,7 +125,6 @@ const Contact = () => {
                 className="ring ring-1 ring-[#752220] w-full rounded-md px-4 py-2 outline-none focus:ring-2 focus:ring-[#752220] mt-2"
               />
             </div>
-
             <div>
               <label
                 htmlFor="message"
@@ -145,7 +140,6 @@ const Contact = () => {
                 className="ring ring-1 ring-[#752220] w-full rounded-md px-4 py-2 outline-none focus:ring-2 focus:ring-[#752220] mt-2 h-32"
               />
             </div>
-
             <div>
               <button
                 type="submit"
