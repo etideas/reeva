@@ -46,22 +46,22 @@ function CrewForm() {
   };
 
   const INPUT_FIELDS =
-    "bg-transparent border border-[#F6F1F1] w-full rounded-md px-4 py-2 outline-none focus:ring-2 focus:ring-[#752220] mt-2";
+    "bg-transparent border border-[#752220] w-full rounded-md px-4 py-2 outline-none focus:ring-2 focus:ring-[#752220] mt-2";
 
   return (
     <div
       id="crewform"
-      className="flex w-full min-h-screen justify-center items-center relative px-4 sm:px-8 py-8 text-center"
+      className="flex w-full min-h-screen justify-center items-center relative px-4 sm:px-8 py-3 text-center "
     >
-      <div className="flex flex-col md:flex-col bg-[#752220] w-full max-w-4xl p-6 sm:p-8 rounded-xl shadow-lg text-[#F6F1F1] mt-8 sm:mt-[100px] relative z-10 space-y-6 md:space-y-6 md:space-x-0">
+      <div className="flex flex-col md:flex-col bg-[#F6F1F1] w-full max-w-4xl p-6 sm:p-8 rounded-xl shadow-lg text-[#752220] mt-8 sm:mt-[100px] relative z-10 space-y-6 md:space-y-6 md:space-x-0">
         <div className="flex flex-col space-y-6 justify-between md:w-full">
-          <h1 className="font-bold text-3xl md:text-4xl tracking-wide text-[#F6F1F1]">
+          <h1 className="font-bold text-3xl md:text-4xl tracking-wide text-[#752220]">
             Join the Crew!
           </h1>
 
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col space-y-4"
+            className="flex flex-col space-y-4 mt-20"
           >
             {/* Can you swim? */}
             <div>
@@ -477,11 +477,14 @@ function CrewForm() {
 
             <button
               type="submit"
-              className="text-[#752220] bg-[#F6F1F1] rounded-md px-4 py-2 font-bold md:text-2xl transition duration-200 sm:w-auto"
+              className="text-white bg-[#752220] rounded-md px-4 py-2 font-bold md:text-2xl transition duration-200 sm:w-auto"
             >
               Aye Aye, Captain!!
             </button>
           </form>
+          <div className="pt-8">
+            
+          </div>
         </div>
       </div>
     </div>

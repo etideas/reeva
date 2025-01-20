@@ -30,7 +30,7 @@ const BlogPage = () => {
   }, [listAllBlogs]);
 
   return (
-    <div className="bg-[url('./assets/shell.jpg')] bg-cover">
+    <div className="bg-[url('./assets/blogbg.jpeg')] bg-cover">
       <div className="pt-5 md:pt-12 px-4 md:px-10 bg-black bg-opacity-20 text-[#752220] backdrop-blur-[4px] min-h-screen">
         <div className="flex flex-col md:flex-row bg-black bg-opacity-[15%] rounded-2xl">
           {/* Index Section */}
@@ -49,7 +49,7 @@ const BlogPage = () => {
                   key={index}
                   className={`cursor-pointer p-2 rounded ${
                     selectedBlog?.id === blog.id
-                      ? "bg-[#752220] text-white"
+                      ? "text-[#752220] bg-white font-bold"
                       : "hover:bg-gray-200"
                   }`}
                   onClick={() => setSelectedBlog(blog)}

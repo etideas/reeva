@@ -1,0 +1,56 @@
+/* Custom arrow styles */
+.custom-left-nav,
+.custom-right-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  color: white; /* Arrow color */
+  border: none; /* Remove border */
+  border-radius: 50%; /* Circle shape */
+  width: 50px; /* Arrow size */
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.custom-left-nav {
+  left: -90px; /* Position outside the gallery container */
+}
+
+.custom-right-nav {
+  right: -90px; /* Position outside the gallery container */
+}
+
+.custom-left-nav:hover,
+.custom-right-nav:hover {
+  background-color: rgba(0, 0, 0, 0.8); /* Darker on hover */
+}
+
+.custom-left-nav:disabled,
+.custom-right-nav:disabled {
+  opacity: 0.5; /* Reduce opacity when disabled */
+  cursor: not-allowed; /* Show disabled cursor */
+}
+
+/* Adjust arrow position for smaller screens */
+@media (max-width: 768px) {
+  .custom-left-nav {
+    left: -30px; /* Closer to the gallery for smaller screens */
+  }
+
+  .custom-right-nav {
+    right: -30px; /* Closer to the gallery for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-left-nav,
+  .custom-right-nav {
+    width: 30px; /* Smaller size for mobile devices */
+    height: 30px;
+  }
+}

@@ -1,6 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
-import img1 from "../assets/img/img17.jpg";
+import img1 from "../assets/img/aboutboat.jpg";
+import textImg from "../assets/img/text.png"
+import hiking from "../assets/img/img15.jpg"
 import homeVideo from "../assets/HomeVid.mov";
 
 const motionSettings = {
@@ -29,12 +31,28 @@ const Motion = () => {
           />
         </div>
 
-        {/* Text Overlay */}
+        {/* Text Overlay 
         <div className="absolute top-[25rem] left-10 flex flex-col justify-center items-center text-center text-white z-10">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 font-serif">
             The Reeva Project
           </h1>
         </div>
+        */}
+        {/* Text Overlay  */}
+       <div className="absolute top-[20rem] left-10 flex flex-col justify-center items-center text-center text-white z-10">
+          <img
+            src={textImg}
+            alt="Description of image"  
+            className="w-[24rem] h-[6rem] rounded-md" 
+          />
+          <p>“Replace your what-ifs with why-nots”<br></br>
+          & watch your life change for the better.</p>
+        </div>
+       
+
+
+
+
 
         {/* Buy Me a Coffee Link */}
         <div className="absolute bottom-5 right-5 z-20">
@@ -42,18 +60,18 @@ const Motion = () => {
             href="https://www.buymeacoffee.com/yourprofile"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-[#F6F1F1] text-black font-bold text-sm px-4 py-2 rounded-full shadow-lg hover:bg-[#FFC933] transition duration-200"
+            className="bg-[#F6F1F1] text-black font-bold text-sm px-4 py-2 rounded-full shadow-lg hover:bg-[#8f2a2a] transition duration-200"
           >
             Buy Me a Coffee ☕
           </a>
         </div>
       </section>
 
-      <div className="bg-[url('./assets/bg5.gif')] bg-no-repeat bg-cover px-10">
-        <div className="flex flex-col items-center pt-[7rem]">
+      <div className="bg-[url('./assets/bg5.gif')] bg-no-repeat bg-cover px-10 pt-7">
+        <div className="flex flex-col items-center pt-[9.5rem]">
           {/* First Card */}
           <motion.section
-            className="flex flex-col md:flex-row items-center justify-between w-full gap-8 py-8"
+            className="flex flex-col md:flex-row items-center justify-between w-full gap-8 pt[9.5rem]"
             {...motionSettings}
           >
             <motion.img
@@ -63,13 +81,13 @@ const Motion = () => {
               {...motionSettings}
             />
             <motion.div
-              className="text-white md:w-1/2 px-6 text-center"
+              className="text-white md:w-1/2 px-6 "
               {...motionSettings}
             >
-              <h2 className="text-sm md:text-2xl lg:text-3xl font-bold mb-4">
+              <h2 className="text-sm md:text-2xl lg:text-3xl font-bold mb-4 text-center">
                 The Reeva Life
               </h2>
-              <p className="text-sm md:text-base lg:text-lg leading-relaxed">
+              <p className="text-sm md:text-base lg:text-lg leading-relaxed text-justify">
                 We are Kaeya, Vaidehi and Gaurav, a family of three, who have
                 decided to move away from the normal and adopt an alternate
                 lifestyle. A life at sea. We always believed that all that we
@@ -86,11 +104,11 @@ const Motion = () => {
 
           {/* Second Card */}
           <motion.section
-            className="flex flex-col md:flex-row-reverse items-center justify-between w-full gap-8 py-8 pt-14"
+            className="flex flex-col md:flex-row-reverse items-center justify-between w-full gap-8  pt-[9.5rem]"
             {...motionSettings}
           >
             <motion.img
-              src="/images/PHOTO 3.PNG"
+              src={hiking}
               alt="Customized Group Hiking"
               className="w-[800px] md:w-2/2 h-[450px] rounded-lg shadow-lg border-t-[10px] border-b-[28px] border-l-[10px] border-white"
               {...motionSettings}
@@ -99,10 +117,10 @@ const Motion = () => {
               className="text-white md:w-1/2 px-6 text-center"
               {...motionSettings}
             >
-              <h2 className="text-sm md:text-2xl lg:text-3xl font-bold mb-4">
+              <h2 className="text-sm md:text-2xl lg:text-3xl font-bold mb-4 text-center">
                 Customized Group Hiking
               </h2>
-              <p className="text-sm md:text-base lg:text-lg leading-relaxed">
+              <p className="text-sm md:text-base lg:text-lg leading-relaxed text-justify">
                 This lifestyle gives us the freedom to travel around the world
                 while we use renewable energy for all our needs. As we go from
                 island to island, country to country we like to interact with
@@ -116,7 +134,7 @@ const Motion = () => {
 
           {/* Third Card */}
           <motion.section
-            className="flex flex-col md:flex-row items-center justify-between w-full gap-8 py-8"
+            className="flex flex-col md:flex-row items-center justify-between w-full gap-8 pt-[9.5rem]"
             {...motionSettings}
           >
             <motion.img
@@ -129,10 +147,10 @@ const Motion = () => {
               className="text-white md:w-1/2 px-6 text-center"
               {...motionSettings}
             >
-              <h2 className="text-sm md:text-2xl lg:text-3xl font-bold mb-4">
+              <h2 className="text-sm md:text-2xl lg:text-3xl font-bold mb-4 text-center">
                 About our boat
               </h2>
-              <p className="text-sm md:text-base lg:text-lg leading-relaxed">
+              <p className="text-sm md:text-base lg:text-lg leading-relaxed text-justify">
                 Reeva is a 1988 built, Tayana V 42. It’s an aft cockpit canoe
                 stern design and was custom built for living onboard while
                 sailing in all-weather conditions. She was Hull No. 156 of the
