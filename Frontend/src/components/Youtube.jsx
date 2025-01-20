@@ -37,14 +37,14 @@ const YouTube = () => {
   return (
     <div
       id="youtube"
-      className="min-h-screen px-4 py-8 text-white flex  flex-col gap-12 md:flex-row md:gap-32"
+      className="min-h-screen px-4 pt-[9.5rem] text-white flex  flex-col gap-12 md:flex-row md:gap-32"
     >
       {/* Latest Videos Section */}
       <section className="w-full md:w-[70%]">
-        <h2 className="text-2xl md:text-4xl font-bold md:text-left text-center mb-6">
+        <h2 className="text-2xl md:text-2xl font-bold md:text-left text-center mb-6">
           Our Latest
         </h2>
-        <div className="flex justify-center items-center bg-white p-4 rounded-lg">
+        <div className="flex justify-center items-center bg-white pt-[1rem] pr-[1rem] pl-[1rem] pb-[2rem] rounded-lg">
           {videos.slice(0, 1).map((video) => (
             <iframe
               key={video.id}
@@ -61,7 +61,7 @@ const YouTube = () => {
 
       {/* Other Videos Section */}
       <section className="sm:w-full md:w-auto">
-        <h2 className="text-2xl md:text-4xl font-bold text-center mb-6">
+        <h2 className="text-2xl md:text-2xl font-bold text-center mb-6">
           Other Videos
         </h2>
         <div
