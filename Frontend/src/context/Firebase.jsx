@@ -7,13 +7,7 @@ const FirebaseContext = createContext(null);
 
 // Firebase configuration object
 const firebaseConfig = {
-  apiKey: "AIzaSyAWMcVxRYc9QwYhBNaYQfaI3cwi_eFeLfA",
-  authDomain: "reevaadmin-781c5.firebaseapp.com",
-  projectId: "reevaadmin-781c5",
-  storageBucket: "reevaadmin-781c5.appspot.com",
-  messagingSenderId: "682620285467",
-  appId: "1:682620285467:web:da0d7e8eb2482ace727ebe",
-  measurementId: "G-RJSM3S7H2J",
+ 
 };
 
 // Initialize Firebase
